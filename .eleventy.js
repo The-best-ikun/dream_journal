@@ -100,7 +100,7 @@ module.exports = function(eleventyConfig) {
       output: "_site",
       layouts: "_layouts"
     },
-     // 2. 开启前缀功能
-    pathPrefix: "/dream_journal/"
+     // 2. 开启前缀功能,有自定义域名或者本地运行不需要它，直接使用git page要用它
+    // pathPrefix: "/dream_journal/"
   };
 };
