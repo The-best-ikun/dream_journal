@@ -100,5 +100,7 @@ module.exports = function(eleventyConfig) {
       output: "_site",
       layouts: "_layouts"
     },
+     // 2. 开启前缀功能
+    pathPrefix: "/dream_journal/"
   };
 };
