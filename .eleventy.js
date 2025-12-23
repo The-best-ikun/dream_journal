@@ -100,7 +100,5 @@ module.exports = function(eleventyConfig) {
       output: "_site",
       layouts: "_layouts"
     },
-    // ===== 关键：设置 pathPrefix 为仓库名 =====
-    pathPrefix: "/dream_journal/"
   };
 };
