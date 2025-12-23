@@ -16,7 +16,7 @@
   
   <!-- CSS -->
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | url }}">
-  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | url }}">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -157,19 +157,19 @@
       <p class="motto">{{ site.motto }}</p>
       
       <div class="hero-cards">
-        <a href="/blog/" class="hero-card">
+        <a href="{{ '/blog/' | url }}" class="hero-card">
           <div class="hero-icon">📝</div>
           <h3>博客</h3>
           <p>记录思考与成长的文字</p>
         </a>
         
-        <a href="/projects/" class="hero-card">
+        <a href="{{ '/projects/' | url }}" class="hero-card">
           <div class="hero-icon">🚀</div>
           <h3>项目</h3>
           <p>创意实现与技术探索</p>
         </a>
         
-        <a href="/gallery/" class="hero-card">
+        <a href="{{ '/gallery/' | url }}" class="hero-card">
           <div class="hero-icon">📸</div>
           <h3>相册</h3>
           <p>生活中的美好瞬间</p>
@@ -184,7 +184,7 @@
   {% include 'footer.njk' %}
   
   <!-- JavaScript -->
-  <script src="/assets/js/theme.js"></script>
-  <script src="/assets/js/main.js"></script>
+  <script src="{{ '/assets/js/theme.js' | url }}"></script>
+  <script src="{{ '/assets/js/main.js' | url }}"></script>
 </body>
 </html>

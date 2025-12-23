@@ -92,7 +92,7 @@ keywords: 404, 页面未找到, 迷路
           回到首页
         </a>
         
-        <a href="/blog/" class="btn btn-secondary">
+        <a href="{{ '/blog/' | url }}" class="btn btn-secondary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
             <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/>
@@ -106,10 +106,10 @@ keywords: 404, 页面未找到, 迷路
       <div class="search-suggestion">
         <h3 class="handwriting">🔍 您可能在寻找</h3>
         <ul class="suggestion-list">
-          <li><a href="/about/">关于我</a></li>
-          <li><a href="/projects/">项目展示</a></li>
-          <li><a href="/gallery/">生活相册</a></li>
-          <li><a href="/blog/">最新文章</a></li>
+          <li><a href="{{ '/about/' | url }}">关于我</a></li>
+          <li><a href="{{ '/projects/' | url }}">项目展示</a></li>
+          <li><a href="{{ '/gallery/' | url }}">生活相册</a></li>
+          <li><a href="{{ '/blog/' | url }}">最新文章</a></li>
         </ul>
       </div>
     </div>

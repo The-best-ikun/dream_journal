@@ -11,19 +11,19 @@
         <a href="/" class="nav-link {% if page.url == '/' %}active{% endif %}">首页</a>
       </li>
       <li class="nav-item">
-        <a href="/about/" class="nav-link {% if '/about' in page.url %}active{% endif %}">关于</a>
+        <a href="{{ '/about/' | url }}" class="nav-link {% if '/about' in page.url %}active{% endif %}">关于</a>
       </li>
       <li class="nav-item">
-        <a href="/blog/" class="nav-link {% if '/blog' in page.url %}active{% endif %}">博客</a>
+        <a href="{{ '/blog/' | url }}" class="nav-link {% if '/blog' in page.url %}active{% endif %}">博客</a>
       </li>
       <li class="nav-item">
-        <a href="/projects/" class="nav-link {% if '/projects' in page.url %}active{% endif %}">项目</a>
+        <a href="{{ '/projects/' | url }}" class="nav-link {% if '/projects' in page.url %}active{% endif %}">项目</a>
       </li>
       <li class="nav-item">
-        <a href="/gallery/" class="nav-link {% if '/gallery' in page.url %}active{% endif %}">相册</a>
+        <a href="{{ '/gallery/' | url }}" class="nav-link {% if '/gallery' in page.url %}active{% endif %}">相册</a>
       </li>
       <li class="nav-item">
-        <a href="/guestbook/" class="nav-link {% if '/guestbook' in page.url %}active{% endif %}">留言</a>
+        <a href="{{ '/guestbook/' | url }}" class="nav-link {% if '/guestbook' in page.url %}active{% endif %}">留言</a>
       </li>
     </ul>
     
