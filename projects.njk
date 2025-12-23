@@ -46,7 +46,7 @@ keywords: 项目, 作品集, 技术栈, 创意
           </div>
           
           <div class="capsule-actions">
-            <a href="{{ project.url }}" class="btn btn-primary">查看详情</a>
+            <a href="{{ project.url | url }}" class="btn btn-primary">查看详情</a>
             {% if project.data.demo %}
             <a href="{{ project.data.demo }}" class="btn btn-secondary" target="_blank">在线演示</a>
             {% endif %}
