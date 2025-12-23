@@ -1,0 +1,977 @@
+---
+layout: base.njk
+title: 留言板
+description: 在这里留下你的足迹，分享你的想法
+keywords: 留言, 交流, 反馈, 联系
+---
+
+<section class="guestbook-section">
+  <div class="section-header">
+    <h1 class="handwriting">留言板</h1>
+    <p class="section-subtitle">在这里留下你的足迹，分享你的想法</p>
+  </div>
+  
+  <div class="guestbook-container">
+    <!-- 留言表单 -->
+    <div class="message-form-section glass">
+      <h2>写下你的留言</h2>
+      <form id="messageForm" class="message-form">
+        <div class="form-group">
+          <label for="name">名字 *</label>
+          <input type="text" id="name" name="name" required placeholder="请输入你的名字">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">邮箱</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com (选填)">
+        </div>
+        
+        <div class="form-group">
+          <label for="website">网站</label>
+          <input type="url" id="website" name="website" placeholder="https://your-website.com (选填)">
+        </div>
+        
+        <div class="form-group">
+          <label for="mood">心情标签</label>
+          <div class="mood-selector">
+            <button type="button" class="mood-btn" data-mood="😊">😊 开心</button>
+            <button type="button" class="mood-btn" data-mood="🤔">🤔 思考</button>
+            <button type="button" class="mood-btn" data-mood="🌟">🌟 赞叹</button>
+            <button type="button" class="mood-btn" data-mood="📚">📚 学习</button>
+            <button type="button" class="mood-btn" data-mood="🌿">🌿 自然</button>
+          </div>
+          <input type="hidden" id="mood" name="mood" value="">
+          <input type="hidden" id="replyTo" name="replyTo" value="">
+        </div>
+        
+        <div class="reply-indicator" id="replyIndicator" style="display: none;"></div>
+        
+        <div class="form-group">
+          <label for="message">留言内容 *</label>
+          <textarea id="message" name="message" required rows="5" placeholder="分享你的想法、建议或者任何想说的话..."></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+          <span>发送留言</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+    
+    <!-- 留言列表 -->
+    <div class="messages-section">
+      <h2>访客留言</h2>
+      <div class="messages-list" id="messagesList">
+        <!-- 示例留言 -->
+        <div class="message-item">
+          <div class="message-header">
+            <div class="message-author">
+              <div class="author-avatar">👤</div>
+              <div class="author-info">
+                <div class="author-name">访客示例</div>
+                <div class="message-date">2024-03-15</div>
+              </div>
+            </div>
+            <div class="message-mood">😊</div>
+          </div>
+          <div class="message-content">
+            <p>这是一个示例留言，展示留言板的样式。你的留言将会显示在这里，与其他访客分享你的想法！</p>
+          </div>
+          <div class="message-actions">
+            <button class="like-btn" onclick="likeMessage(this)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="like-count">3</span>
+            </button>
+            <button class="reply-btn" onclick="replyToMessage(this)">回复</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="no-messages" id="noMessages" style="display: none;">
+        <div class="empty-state">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>还没有留言，成为第一个留言的人吧！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.guestbook-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.guestbook-container {
+  display: grid;
+  gap: 3rem;
+}
+
+.message-form-section {
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.message-form-section h2 {
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.message-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 3px rgba(168, 218, 220, 0.1);
+}
+
+.mood-selector {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mood-btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+  background: var(--bg-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.mood-btn:hover {
+  border-color: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.mood-btn.active {
+  background: var(--gradient-primary);
+  color: white;
+  border-color: transparent;
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(168, 218, 220, 0.3);
+}
+
+.messages-section h2 {
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.messages-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.message-item {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.message-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.message-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.message-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.message-mood {
+  font-size: 1.5rem;
+}
+
+.message-content {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.message-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.like-btn,
+.reply-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.like-btn:hover,
+.reply-btn:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+.like-btn.liked {
+  color: var(--accent-pink);
+  border-color: var(--accent-pink);
+  background: rgba(255, 175, 204, 0.1);
+}
+
+.no-messages {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}
+
+.empty-state svg {
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .guestbook-section {
+    padding: 1rem;
+  }
+  
+  .mood-selector {
+    justify-content: center;
+  }
+  
+  .message-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .message-actions {
+    justify-content: center;
+  }
+}
+
+/* 树形回复样式 */
+.message-reply {
+  margin-left: 3rem;
+  margin-top: 1rem;
+  border-left: 3px solid var(--border-color);
+  padding-left: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 0 8px 8px 0;
+}
+
+.message-reply:hover {
+  border-left-color: var(--accent-light);
+}
+
+.replies-section {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.replies-header {
+  margin-bottom: 1rem;
+}
+
+.toggle-replies {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-replies:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+.replies-list {
+  display: block;
+  margin-top: 1rem;
+}
+
+.replies-list.hidden {
+  display: none;
+}
+
+/* 回复预览样式 */
+.reply-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--accent-light);
+}
+
+.reply-preview span {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.cancel-reply {
+  padding: 0.25rem 0.75rem;
+  background: var(--accent-pink);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-reply:hover {
+  background: var(--accent-pink);
+  opacity: 0.8;
+}
+
+/* 点赞按钮优化 */
+.like-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.like-btn:hover {
+  border-color: var(--accent-pink);
+  color: var(--accent-pink);
+}
+
+.like-btn.liked {
+  color: var(--accent-pink);
+  border-color: var(--accent-pink);
+  background: rgba(255, 175, 204, 0.1);
+}
+
+.like-btn.liked svg {
+  fill: var(--accent-pink);
+}
+
+/* 回复按钮优化 */
+.reply-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reply-btn:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+/* 网站链接样式 */
+.website-link {
+  color: var(--accent-light);
+  text-decoration: none;
+  margin-left: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.website-link:hover {
+  opacity: 1;
+}
+
+/* 深色模式适配 */
+[data-theme="dark"] .message-item {
+  background: var(--bg-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .message-reply {
+  background: var(--bg-primary);
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .message-reply:hover {
+  border-left-color: var(--accent-light);
+}
+
+[data-theme="dark"] .mood-btn {
+  background: var(--bg-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .toggle-replies {
+  background: var(--bg-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .reply-preview {
+  background: var(--bg-primary);
+  border-left-color: var(--accent-light);
+}
+</style>
+
+<script>
+// 留言板功能 - 完整的树形回复系统
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化
+  initializeMoodSelector();
+  initializeForm();
+  loadMessages();
+});
+
+// 心情选择器
+function initializeMoodSelector() {
+  const moodBtns = document.querySelectorAll('.mood-btn');
+  const moodInput = document.getElementById('mood');
+  
+  moodBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      moodBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      moodInput.value = this.dataset.mood;
+    });
+  });
+}
+
+// 表单初始化
+function initializeForm() {
+  const form = document.getElementById('messageForm');
+  const replyToInput = document.getElementById('replyTo');
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // 获取表单数据
+    const formData = new FormData(form);
+    const messageData = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      website: formData.get('website'),
+      mood: formData.get('mood'),
+      message: formData.get('message'),
+      replyTo: replyToInput.value || null,
+      date: new Date().toLocaleDateString('zh-CN'),
+      timestamp: Date.now(),
+      id: generateId(),
+      likes: 0,
+      liked: false
+    };
+    
+    // 验证表单
+    if (!validateForm(messageData)) {
+      return;
+    }
+    
+    // 保存留言
+    saveMessage(messageData);
+    
+    // 重置表单
+    form.reset();
+    moodBtns.forEach(btn => btn.classList.remove('active'));
+    replyToInput.value = '';
+    updateFormMode('normal');
+    
+    // 显示成功提示
+    showNotification('留言发送成功！感谢你的分享 🎉');
+  });
+}
+
+// 生成唯一ID
+function generateId() {
+  return 'msg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// 表单验证
+function validateForm(data) {
+  if (!data.name.trim()) {
+    showNotification('请输入你的名字', 'error');
+    return false;
+  }
+  
+  if (!data.message.trim()) {
+    showNotification('请输入留言内容', 'error');
+    return false;
+  }
+  
+  if (data.message.length > 500) {
+    showNotification('留言内容不能超过500字', 'error');
+    return false;
+  }
+  
+  return true;
+}
+
+// 保存留言到localStorage
+function saveMessage(messageData) {
+  let messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+  
+  // 如果是回复，找到父消息并添加到 replies 数组
+  if (messageData.replyTo) {
+    const parentMessage = findMessageById(messages, messageData.replyTo);
+    if (parentMessage) {
+      if (!parentMessage.replies) {
+        parentMessage.replies = [];
+      }
+      parentMessage.replies.push(messageData);
+    }
+  } else {
+    // 新留言添加到开头
+    messages.unshift(messageData);
+  }
+  
+  localStorage.setItem('guestbookMessages', JSON.stringify(messages));
+  loadMessages();
+}
+
+// 查找消息（包括回复中的消息）
+function findMessageById(messages, id) {
+  for (const message of messages) {
+    if (message.id === id) {
+      return message;
+    }
+    if (message.replies) {
+      const found = findMessageById(message.replies, id);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+// 加载留言列表
+function loadMessages() {
+  const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+  const messagesList = document.getElementById('messagesList');
+  const noMessages = document.getElementById('noMessages');
+  
+  if (messages.length === 0) {
+    messagesList.style.display = 'none';
+    noMessages.style.display = 'block';
+    return;
+  }
+  
+  messagesList.style.display = 'block';
+  noMessages.style.display = 'none';
+  
+  // 加载点赞数据
+  const likedMessages = JSON.parse(localStorage.getItem('guestbookLikes') || '{}');
+  
+  // 生成留言HTML
+  const messagesHtml = messages.map(message => {
+    return createMessageHTML(message, likedMessages);
+  }).join('');
+  
+  messagesList.innerHTML = messagesHtml;
+}
+
+// 创建留言HTML（支持树形回复）
+function createMessageHTML(message, likedMessages = {}) {
+  const websiteLink = message.website ? 
+    `<a href="${message.website}" target="_blank" rel="noopener noreferrer" class="website-link" title="访问网站">🔗</a>` : '';
+  
+  const isLiked = likedMessages[message.id] || message.liked || false;
+  const likeCount = message.likes || 0;
+  
+  let html = `
+    <div class="message-item ${message.replyTo ? 'message-reply' : ''}" data-id="${message.id}">
+      <div class="message-header">
+        <div class="message-author">
+          <div class="author-avatar">${message.name.charAt(0).toUpperCase()}</div>
+          <div class="author-info">
+            <div class="author-name">
+              ${escapeHtml(message.name)}
+              ${websiteLink}
+            </div>
+            <div class="message-date">${message.date}</div>
+          </div>
+        </div>
+        <div class="message-mood">${message.mood || '😊'}</div>
+      </div>
+      <div class="message-content">
+        <p>${escapeHtml(message.message)}</p>
+      </div>
+      <div class="message-actions">
+        <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="likeMessage('${message.id}')" title="点赞">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="like-count">${likeCount}</span>
+        </button>
+        <button class="reply-btn" onclick="replyToMessage('${message.id}', '${escapeHtml(message.name)}')" title="回复">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>回复</span>
+        </button>
+      </div>
+      
+      ${message.replies && message.replies.length > 0 ? `
+        <div class="replies-section">
+          <div class="replies-header">
+            <button class="toggle-replies" onclick="toggleReplies('${message.id}')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>${message.replies.length} 条回复</span>
+            </button>
+          </div>
+          <div class="replies-list" id="replies-${message.id}">
+            ${message.replies.map(reply => createMessageHTML(reply, likedMessages)).join('')}
+          </div>
+        </div>
+      ` : ''}
+    </div>
+  `;
+  
+  return html;
+}
+
+// 点赞功能（持久化存储）
+function likeMessage(messageId) {
+  let messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+  let likedMessages = JSON.parse(localStorage.getItem('guestbookLikes') || '{}');
+  
+  // 更新点赞状态
+  likedMessages[messageId] = !likedMessages[messageId];
+  
+  // 更新消息的点赞数
+  const message = findMessageById(messages, messageId);
+  if (message) {
+    message.liked = likedMessages[messageId];
+    if (likedMessages[messageId]) {
+      message.likes = (message.likes || 0) + 1;
+    } else {
+      message.likes = Math.max(0, (message.likes || 0) - 1);
+    }
+  }
+  
+  // 保存到localStorage
+  localStorage.setItem('guestbookMessages', JSON.stringify(messages));
+  localStorage.setItem('guestbookLikes', JSON.stringify(likedMessages));
+  
+  // 重新加载留言列表
+  loadMessages();
+}
+
+// 回复功能
+function replyToMessage(messageId, authorName) {
+  const form = document.getElementById('messageForm');
+  const replyToInput = document.getElementById('replyTo');
+  const messageTextarea = document.getElementById('message');
+  const replyIndicator = document.getElementById('replyIndicator');
+  
+  // 设置回复目标
+  replyToInput.value = messageId;
+  
+  // 更新表单UI
+  updateFormMode('reply', authorName);
+  
+  // 滚动到表单
+  form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  
+  // 聚焦到留言框
+  setTimeout(() => messageTextarea.focus(), 300);
+}
+
+// 更新表单模式
+function updateFormMode(mode, authorName = '') {
+  const formTitle = document.querySelector('.message-form-section h2');
+  const replyIndicator = document.getElementById('replyIndicator');
+  const replyToInput = document.getElementById('replyTo');
+  
+  if (mode === 'reply') {
+    formTitle.textContent = `回复 ${authorName}`;
+    if (replyIndicator) {
+      replyIndicator.style.display = 'block';
+      replyIndicator.innerHTML = `
+        <div class="reply-preview">
+          <span>正在回复 <strong>${authorName}</strong></span>
+          <button type="button" class="cancel-reply" onclick="cancelReply()">取消</button>
+        </div>
+      `;
+    }
+  } else {
+    formTitle.textContent = '写下你的留言';
+    if (replyIndicator) {
+      replyIndicator.style.display = 'none';
+    }
+    replyToInput.value = '';
+  }
+}
+
+// 取消回复
+function cancelReply() {
+  updateFormMode('normal');
+}
+
+// 切换回复显示/隐藏
+function toggleReplies(messageId) {
+  const repliesList = document.getElementById(`replies-${messageId}`);
+  const toggleBtn = repliesList.previousElementSibling.querySelector('.toggle-replies');
+  
+  if (repliesList.style.display === 'none') {
+    repliesList.style.display = 'block';
+    toggleBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 15l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>收起回复</span>
+    `;
+  } else {
+    repliesList.style.display = 'none';
+    toggleBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>展开回复</span>
+    `;
+  }
+}
+
+// HTML转义
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// 显示通知
+function showNotification(message, type = 'success') {
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.innerHTML = `
+    <div class="notification-content">
+      <span class="notification-message">${message}</span>
+      <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+    </div>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // 自动移除
+  setTimeout(() => {
+    notification.classList.add('notification-hiding');
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.remove();
+      }
+    }, 300);
+  }, 3000);
+}
+
+// 添加通知样式
+const notificationStyles = document.createElement('style');
+notificationStyles.textContent = `
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: slideInRight 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  
+  .notification.notification-hiding {
+    animation: slideOutRight 0.3s ease;
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  
+  .notification-content {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .notification.success .notification-content {
+    background: var(--gradient-primary);
+  }
+  
+  .notification.error .notification-content {
+    background: var(--accent-pink);
+  }
+  
+  .notification-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+  }
+  
+  .notification-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(notificationStyles);
+</script>

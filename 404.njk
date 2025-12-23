@@ -1,0 +1,418 @@
+---
+layout: base.njk
+title: 页面未找到 - 白日梦游记
+description: 抱歉，您访问的页面似乎迷失在了数字宇宙中
+keywords: 404, 页面未找到, 迷路
+---
+
+<section class="error-404">
+  <div class="error-content glass">
+    <div class="error-illustration">
+      <!-- 迷路宇航员SVG -->
+      <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- 星星背景 -->
+        <circle cx="30" cy="30" r="2" fill="#FFAFCC" opacity="0.8">
+          <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="170" cy="40" r="1.5" fill="#A8DADC" opacity="0.7">
+          <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="150" cy="150" r="2" fill="#CCD5AE" opacity="0.6">
+          <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="50" cy="160" r="1" fill="#FFAFCC" opacity="0.9">
+          <animate attributeName="opacity" values="0.9;0.4;0.9" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        
+        <!-- 宇航员 -->
+        <g transform="translate(100, 100)">
+          <!-- 头盔 -->
+          <circle cx="0" cy="-10" r="25" fill="none" stroke="#2d3436" stroke-width="3"/>
+          <circle cx="0" cy="-10" r="20" fill="rgba(168, 218, 220, 0.3)"/>
+          
+          <!-- 头盔反光 -->
+          <ellipse cx="-5" cy="-15" rx="8" ry="12" fill="rgba(255, 255, 255, 0.6)" transform="rotate(-20 -5 -15)"/>
+          
+          <!-- 身体 -->
+          <ellipse cx="0" cy="15" rx="30" ry="35" fill="#2d3436"/>
+          
+          <!-- 手臂 -->
+          <ellipse cx="-25" cy="10" rx="8" ry="20" fill="#2d3436" transform="rotate(-30 -25 10)"/>
+          <ellipse cx="25" cy="10" rx="8" ry="20" fill="#2d3436" transform="rotate(30 25 10)"/>
+          
+          <!-- 腿 -->
+          <ellipse cx="-10" cy="45" rx="10" ry="15" fill="#2d3436"/>
+          <ellipse cx="10" cy="45" rx="10" ry="15" fill="#2d3436"/>
+          
+          <!-- 面部 -->
+          <circle cx="-5" cy="-12" r="2" fill="#2d3436"/>
+          <circle cx="5" cy="-12" r="2" fill="#2d3436"/>
+          
+          <!-- 困惑嘴巴 -->
+          <path d="M -3,-5 Q 0,-3 3,-5" stroke="#2d3436" stroke-width="2" fill="none" stroke-linecap="round"/>
+          
+          <!-- 漂浮动画 -->
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="100,100; 100,95; 100,100"
+            dur="4s"
+            repeatCount="indefinite"/>
+        </g>
+        
+        <!-- 小行星 -->
+        <g transform="translate(40, 80)">
+          <ellipse cx="0" cy="0" rx="15" ry="12" fill="#636e72" opacity="0.8"/>
+          <circle cx="-5" cy="-3" r="2" fill="#2d3436" opacity="0.6"/>
+          <circle cx="3" cy="2" r="3" fill="#2d3436" opacity="0.5"/>
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            values="0 40 80; 360 40 80"
+            dur="20s"
+            repeatCount="indefinite"/>
+        </g>
+      </svg>
+    </div>
+    
+    <div class="error-info">
+      <h1 class="error-title handwriting">404</h1>
+      <h2 class="error-subtitle">哎呀，页面走丢了</h2>
+      <p class="error-description">
+        看来这个页面在数字宇宙中迷失了方向，就像我们的宇航员朋友一样。
+        不过别担心，让我们一起回到安全的港湾吧。
+      </p>
+      
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"/>
+            <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          回到首页
+        </a>
+        
+        <a href="/blog/" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          浏览博客
+        </a>
+      </div>
+      
+      <div class="search-suggestion">
+        <h3 class="handwriting">🔍 您可能在寻找</h3>
+        <ul class="suggestion-list">
+          <li><a href="/about/">关于我</a></li>
+          <li><a href="/projects/">项目展示</a></li>
+          <li><a href="/gallery/">生活相册</a></li>
+          <li><a href="/blog/">最新文章</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 装饰性元素 -->
+  <div class="floating-elements">
+    <div class="floating-star" style="--delay: 0s;">✨</div>
+    <div class="floating-star" style="--delay: 1s;">⭐</div>
+    <div class="floating-star" style="--delay: 2s;">💫</div>
+    <div class="floating-star" style="--delay: 3s;">🌟</div>
+  </div>
+</section>
+
+<style>
+.error-404 {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.error-content {
+  text-align: center;
+  padding: 3rem;
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+}
+
+.error-illustration {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.error-illustration svg {
+  max-width: 300px;
+  height: auto;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.error-title {
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.error-subtitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.error-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.error-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  min-width: 150px;
+  justify-content: center;
+}
+
+.search-suggestion {
+  margin-top: 2rem;
+}
+
+.search-suggestion h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.suggestion-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.suggestion-list li {
+  margin: 0;
+}
+
+.suggestion-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.suggestion-list a:hover {
+  background: var(--accent-light);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* 浮动装饰元素 */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-star {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: twinkle 3s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.floating-star:nth-child(1) { top: 10%; left: 10%; }
+.floating-star:nth-child(2) { top: 20%; right: 15%; }
+.floating-star:nth-child(3) { bottom: 30%; left: 20%; }
+.floating-star:nth-child(4) { bottom: 15%; right: 25%; }
+
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+/* 背景星空效果 */
+.error-404::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, #FFAFCC, transparent),
+    radial-gradient(2px 2px at 60% 70%, #A8DADC, transparent),
+    radial-gradient(1px 1px at 50% 50%, #CCD5AE, transparent),
+    radial-gradient(1px 1px at 80% 10%, #FFAFCC, transparent);
+  background-size: 200px 200px;
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+  opacity: 0.3;
+  animation: starfield 60s linear infinite;
+  z-index: 0;
+}
+
+@keyframes starfield {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-200px) rotate(360deg); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .error-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .error-title {
+    font-size: 3.5rem;
+  }
+  
+  .error-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .error-description {
+    font-size: 1rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .error-actions .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .suggestion-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .floating-star {
+    font-size: 1.2rem;
+  }
+}
+
+/* 加载动画 */
+.error-content {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: errorFadeIn 1s ease-out 0.5s forwards;
+}
+
+@keyframes errorFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 深色模式适配 */
+[data-theme="dark"] .error-illustration svg circle[fill="#2d3436"] {
+  fill: #f1f2f6;
+}
+
+[data-theme="dark"] .error-illustration svg path[stroke="#2d3436"] {
+  stroke: #f1f2f6;
+}
+
+[data-theme="dark"] .error-illustration svg ellipse[fill="#2d3436"] {
+  fill: #f1f2f6;
+}
+</style>
+
+<script>
+// 404页面交互功能
+document.addEventListener('DOMContentLoaded', function() {
+  // 添加打字机效果到错误描述
+  const description = document.querySelector('.error-description');
+  if (description) {
+    const originalText = description.textContent;
+    description.textContent = '';
+    let index = 0;
+    
+    function typeWriter() {
+      if (index < originalText.length) {
+        description.textContent += originalText.charAt(index);
+        index++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+    
+    setTimeout(typeWriter, 1000);
+  }
+  
+  // 随机生成更多星星
+  function createStars() {
+    const starContainer = document.querySelector('.floating-elements');
+    if (!starContainer) return;
+    
+    for (let i = 0; i < 5; i++) {
+      const star = document.createElement('div');
+      star.className = 'floating-star';
+      star.textContent = ['✨', '⭐', '💫', '🌟'][Math.floor(Math.random() * 4)];
+      star.style.cssText = `
+        top: ${Math.random() * 80 + 10}%;
+        left: ${Math.random() * 80 + 10}%;
+        --delay: ${Math.random() * 4}s;
+        animation-duration: ${2 + Math.random() * 3}s;
+      `;
+      starContainer.appendChild(star);
+    }
+  }
+  
+  createStars();
+  
+  // 宇航员跟随鼠标轻微移动
+  const astronaut = document.querySelector('.error-illustration svg g');
+  if (astronaut) {
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      astronaut.style.transform = `translate(${100 + x}px, ${100 + y}px)`;
+    });
+  }
+});
+</script>

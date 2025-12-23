@@ -1,0 +1,433 @@
+---
+layout: base.njk
+title: 我的旅程
+description: 了解我的教育背景、工作经历和技能星系
+keywords: 关于, 个人简介, 技能, 经历
+---
+
+<section class="about-section">
+  <div class="section-header">
+    <h1 class="handwriting">我的旅程</h1>
+    <p class="section-subtitle">在代码与文字间，寻找诗意的栖居</p>
+  </div>
+  
+  <div class="about-content">
+    <div class="intro-card glass">
+      <div class="intro-content">
+        <h2>你好，我是<span class="handwriting">Your Name</span></h2>
+        <p>一个热爱生活、追求技术美学的开发者。我相信代码不仅是逻辑的体现，更是一种艺术表达。在这个数字化的世界里，我试图用代码构建有温度的产品，用文字记录有思考的生活。</p>
+        <p>我的创作理念是：将技术的严谨性与人文的温度相结合，让每一个项目都承载着故事，让每一行代码都充满意义。</p>
+      </div>
+    </div>
+    
+    <div class="timeline-section">
+      <h2>成长轨迹</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass">
+            <div class="timeline-date">2024 - 至今</div>
+            <h3>前端架构师</h3>
+            <p>负责大型Web应用的架构设计和技术选型，推动团队技术成长</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass">
+            <div class="timeline-date">2021 - 2024</div>
+            <h3>全栈开发工程师</h3>
+            <p>参与多个创新项目，从需求分析到产品上线全流程参与</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass">
+            <div class="timeline-date">2019 - 2021</div>
+            <h3>前端开发工程师</h3>
+            <p>专注于用户界面开发，提升用户体验和产品性能</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass">
+            <div class="timeline-date">2015 - 2019</div>
+            <h3>计算机科学学士</h3>
+            <p>在大学期间奠定了坚实的编程基础，培养了良好的学习习惯</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="skills-section">
+      <h2>技能星系</h2>
+      <div class="skills-galaxy">
+        <canvas id="skillsCanvas" width="800" height="600"></canvas>
+      </div>
+    </div>
+    
+    <div class="values-section">
+      <h2>价值理念</h2>
+      <div class="values-grid grid grid-3">
+        <div class="value-card glass">
+          <div class="value-icon">🎯</div>
+          <h3>精益求精</h3>
+          <p>对代码质量和技术细节永不妥协，追求卓越的用户体验</p>
+        </div>
+        
+        <div class="value-card glass">
+          <div class="value-icon">🌱</div>
+          <h3>持续学习</h3>
+          <p>保持好奇心，拥抱新技术，在变化中寻找成长机会</p>
+        </div>
+        
+        <div class="value-card glass">
+          <div class="value-icon">🤝</div>
+          <h3>团队协作</h3>
+          <p>相信团队的力量，通过沟通与合作创造更大价值</p>
+        </div>
+        
+        <div class="value-card glass">
+          <div class="value-icon">💡</div>
+          <h3>创新思维</h3>
+          <p>勇于尝试新方法，在约束中寻找创造性的解决方案</p>
+        </div>
+        
+        <div class="value-card glass">
+          <div class="value-icon">❤️</div>
+          <h3>用户至上</h3>
+          <p>始终站在用户角度思考，用同理心指导产品设计</p>
+        </div>
+        
+        <div class="value-card glass">
+          <div class="value-icon">🎨</div>
+          <h3>美学追求</h3>
+          <p>相信技术与艺术的结合能创造更有价值的体验</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.about-section {
+  padding: 2rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.intro-card {
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.intro-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.intro-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.timeline-section {
+  margin: 3rem 0;
+}
+
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gradient-primary);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-right: 52%;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: 52%;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-light);
+  border: 4px solid var(--bg-primary);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.timeline-content {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.timeline-date {
+  font-size: 0.9rem;
+  color: var(--accent-pink);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.skills-section {
+  margin: 3rem 0;
+}
+
+.skills-galaxy {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+#skillsCanvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.values-section {
+  margin: 3rem 0;
+}
+
+.values-grid {
+  gap: 1.5rem;
+}
+
+.value-card {
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.value-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.value-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: 60px;
+    margin-right: 0;
+    text-align: left;
+  }
+  
+  .timeline-marker {
+    left: 20px;
+  }
+  
+  .section-header h1 {
+    font-size: 2rem;
+  }
+}
+</style>
+
+<script>
+// 技能星系图
+document.addEventListener('DOMContentLoaded', function() {
+  const canvas = document.getElementById('skillsCanvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  
+  // 技能数据
+  const skills = [
+    { name: 'JavaScript', level: 90, color: '#f7df1e', x: 0, y: 0 },
+    { name: 'React', level: 85, color: '#61dafb', x: 150, y: -100 },
+    { name: 'Vue', level: 80, color: '#4fc08d', x: -150, y: -100 },
+    { name: 'Node.js', level: 75, color: '#339933', x: 200, y: 50 },
+    { name: 'CSS', level: 85, color: '#1572b6', x: -200, y: 50 },
+    { name: 'TypeScript', level: 70, color: '#3178c6', x: 100, y: 150 },
+    { name: 'Python', level: 65, color: '#3776ab', x: -100, y: 150 },
+    { name: 'Docker', level: 60, color: '#2496ed', x: 0, y: -180 }
+  ];
+  
+  // 绘制轨道
+  function drawOrbit(radius) {
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(168, 218, 220, 0.2)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+  
+  // 绘制技能星球
+  function drawSkill(skill) {
+    const x = centerX + skill.x;
+    const y = centerY + skill.y;
+    const radius = (skill.level / 100) * 30 + 10;
+    
+    // 绘制连线
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = 'rgba(168, 218, 220, 0.3)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    
+    // 绘制星球
+    const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+    gradient.addColorStop(0, skill.color);
+    gradient.addColorStop(0.7, skill.color);
+    gradient.addColorStop(1, skill.color + '40');
+    
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.fillStyle = gradient;
+    ctx.fill();
+    
+    // 绘制边框
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.strokeStyle = skill.color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // 绘制文字
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+    ctx.font = '12px Noto Sans SC';
+    ctx.textAlign = 'center';
+    ctx.fillText(skill.name, x, y - radius - 10);
+    
+    // 绘制熟练度
+    ctx.font = '10px Noto Sans SC';
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+    ctx.fillText(skill.level + '%', x, y + 3);
+  }
+  
+  // 绘制中心太阳
+  function drawSun() {
+    const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 25);
+    gradient.addColorStop(0, '#FFD700');
+    gradient.addColorStop(0.7, '#FFA500');
+    gradient.addColorStop(1, '#FF6347');
+    
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 25, 0, Math.PI * 2);
+    ctx.fillStyle = gradient;
+    ctx.fill();
+    
+    // 太阳光晕
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 30, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+  
+  // 动画函数
+  let animationProgress = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 绘制轨道
+    drawOrbit(100);
+    drawOrbit(180);
+    drawOrbit(250);
+    
+    // 绘制中心太阳
+    drawSun();
+    
+    // 绘制技能
+    skills.forEach((skill, index) => {
+      setTimeout(() => {
+        drawSkill(skill);
+      }, index * 200);
+    });
+    
+    animationProgress += 0.01;
+    if (animationProgress < 1) {
+      requestAnimationFrame(animate);
+    }
+  }
+  
+  // 响应式调整
+  function resizeCanvas() {
+    const container = canvas.parentElement;
+    const containerWidth = container.offsetWidth;
+    
+    if (containerWidth < 600) {
+      canvas.width = containerWidth;
+      canvas.height = containerWidth * 0.75;
+    }
+  }
+  
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  animate();
+});
+</script>

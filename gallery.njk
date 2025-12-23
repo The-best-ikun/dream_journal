@@ -1,0 +1,355 @@
+---
+layout: base.njk
+title: 瞬间显影
+description: 生活中的美好瞬间，用镜头记录的诗意
+keywords: 相册, 摄影, 生活, 瞬间, 美好
+---
+
+<section class="gallery-section">
+  <div class="section-header">
+    <h1 class="handwriting">瞬间显影</h1>
+    <p class="section-subtitle">时光易逝，但美好永远定格</p>
+  </div>
+  
+  <div class="polaroid-wall" id="polaroidWall">
+    {% for photo in collections.gallery %}
+    <div class="polaroid-photo">
+      <div class="polaroid-frame">
+        <div class="photo-container">
+          <img src="{{ photo.data.image }}" alt="{{ photo.data.title }}" loading="lazy">
+        </div>
+        
+        <div class="polaroid-caption handwriting">
+          <div class="photo-title">{{ photo.data.title }}</div>
+          <div class="photo-date">{{ photo.data.date | date("yyyy.MM.dd") }}</div>
+          <div class="photo-note">{{ photo.data.note }}</div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+  <div class="gallery-loading" id="galleryLoading">
+    <div class="loading-spinner"></div>
+    <p>正在加载美好瞬间...</p>
+  </div>
+</section>
+
+<style>
+.gallery-section {
+  padding: 2rem 0;
+  min-height: 100vh;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.polaroid-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+  position: relative;
+  overflow: visible;
+}
+
+/* 确保相册区域不受全局动画影响 */
+.polaroid-wall *,
+.polaroid-photo * {
+  overflow: visible !important;
+}
+
+/* 强制禁用所有可能的伪元素动画 */
+.polaroid-photo .btn::before,
+.polaroid-photo .card::before,
+.polaroid-photo .hero-card::before {
+  display: none !important;
+}
+
+.polaroid-photo {
+  opacity: 1;
+}
+
+.polaroid-frame {
+  background: white;
+  padding: 1rem 1rem 3rem 1rem;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: visible;
+}
+
+/* 禁用全局动画效果 */
+.polaroid-frame::before,
+.polaroid-frame::after,
+.polaroid-photo::before,
+.polaroid-photo::after {
+  display: none !important;
+  content: none !important;
+}
+
+.polaroid-frame:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.photo-container {
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--bg-secondary);
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  margin-top: 1rem;
+  text-align: center;
+  color: #2d3436;
+  position: relative;
+}
+
+.photo-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.photo-date {
+  font-size: 0.9rem;
+  color: #636e72;
+  margin-bottom: 0.5rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+.photo-note {
+  font-size: 0.85rem;
+  color: #636e72;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* 拍立得贴纸效果已移除 */
+
+/* 胶片边框效果已移除以简化悬停动画 */
+
+/* 加载动画 */
+.gallery-loading {
+  text-align: center;
+  padding: 3rem;
+  display: none;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top: 3px solid var(--accent-light);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .polaroid-wall {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .section-header h1 {
+    font-size: 2rem;
+  }
+  
+  .polaroid-frame {
+    padding: 0.75rem 0.75rem 2.5rem 0.75rem;
+  }
+  
+  .photo-title {
+    font-size: 1rem;
+  }
+  
+  .photo-date {
+    font-size: 0.8rem;
+  }
+  
+  .photo-note {
+    font-size: 0.75rem;
+  }
+}
+
+/* 深色模式适配 */
+[data-theme="dark"] .polaroid-frame {
+  background: #2d3436;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .polaroid-caption {
+  color: #f1f2f6;
+}
+
+[data-theme="dark"] .photo-date {
+  color: #a4b0be;
+}
+
+[data-theme="dark"] .photo-note {
+  color: #a4b0be;
+}
+
+/* 图片点击查看大图效果 */
+.image-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.image-lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  animation: lightboxZoom 0.3s ease-out;
+}
+
+.image-lightbox .close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.image-lightbox .close-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes lightboxZoom {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+</style>
+
+<!-- 图片灯箱组件 -->
+<div class="image-lightbox" id="imageLightbox">
+  <div class="close-btn" onclick="closeLightbox()">×</div>
+  <img id="lightboxImage" src="" alt="">
+</div>
+
+<script>
+// 相册交互功能
+document.addEventListener('DOMContentLoaded', function() {
+  const photos = document.querySelectorAll('.polaroid-photo');
+  const lightbox = document.getElementById('imageLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  
+  // 为每个照片添加点击事件
+  photos.forEach(photo => {
+    photo.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const img = this.querySelector('img');
+      if (img) {
+        openLightbox(img.src, img.alt);
+      }
+    });
+    
+    // 添加悬停音效（视觉反馈）
+    photo.addEventListener('mouseenter', function() {
+      this.style.zIndex = '10';
+    });
+    
+    photo.addEventListener('mouseleave', function() {
+      this.style.zIndex = 'auto';
+    });
+  });
+  
+  // 灯箱功能
+  function openLightbox(src, alt) {
+    lightboxImage.src = src;
+    lightboxImage.alt = alt;
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  
+  window.closeLightbox = function() {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  };
+  
+  // 点击背景关闭灯箱
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+  
+  // ESC键关闭灯箱
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+  
+
+  
+
+});
+</script>

@@ -1,0 +1,307 @@
+---
+layout: base.njk
+title: 项目展示
+description: 探索我的创意项目和技术实现
+keywords: 项目, 作品集, 技术栈, 创意
+---
+
+<section class="projects-section">
+  <div class="section-header">
+    <h1 class="handwriting">时间胶囊</h1>
+    <p class="section-subtitle">每一个项目都是一段记忆的封装</p>
+  </div>
+  
+  <div class="projects-grid">
+    {% for project in collections.projects %}
+    <article class="time-capsule {% if loop.index % 2 == 0 %}even{% endif %}">
+      <div class="capsule-content glass">
+        {% if project.data.cover %}
+        <div class="capsule-cover">
+          <img src="{{ project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
+          <div class="cover-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+        {% endif %}
+        
+        <div class="capsule-info">
+          <div class="capsule-date">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            {{ project.data.date | date("yyyy年MM月") }}
+          </div>
+          
+          <h2 class="capsule-title">{{ project.data.title }}</h2>
+          <p class="capsule-description">{{ project.data.description }}</p>
+          
+          <div class="tech-stack">
+            {% for tech in project.data.tech %}
+            <span class="tech-badge">{{ tech }}</span>
+            {% endfor %}
+          </div>
+          
+          <div class="capsule-actions">
+            <a href="{{ project.url }}" class="btn btn-primary">查看详情</a>
+            {% if project.data.demo %}
+            <a href="{{ project.data.demo }}" class="btn btn-secondary" target="_blank">在线演示</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.projects-section {
+  padding: 2rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.projects-grid {
+  display: grid;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.time-capsule {
+  position: relative;
+}
+
+.time-capsule:nth-child(even) {
+  transform: translateX(10px);
+}
+
+.time-capsule:nth-child(odd) {
+  transform: translateX(-10px);
+}
+
+.capsule-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.time-capsule:hover .capsule-content {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px var(--shadow-medium);
+}
+
+.capsule-cover {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+}
+
+.capsule-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.time-capsule:hover .capsule-cover img {
+  transform: scale(1.1);
+}
+
+.cover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+}
+
+.time-capsule:hover .cover-overlay {
+  opacity: 1;
+}
+
+.capsule-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.capsule-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-pink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.capsule-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.3;
+}
+
+.capsule-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-badge {
+  background: var(--gradient-secondary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.tech-badge:hover {
+  transform: scale(1.1);
+}
+
+.capsule-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.capsule-actions .btn {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+}
+
+/* 时间胶囊装饰 */
+.capsule-content::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 20px;
+  background: var(--gradient-primary);
+  border-radius: 10px 10px 0 0;
+  opacity: 0.6;
+}
+
+.capsule-content::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 10px;
+  background: var(--bg-secondary);
+  border-radius: 5px 5px 0 0;
+  border: 1px solid var(--border-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .projects-grid {
+    gap: 2rem;
+  }
+  
+  .time-capsule:nth-child(even),
+  .time-capsule:nth-child(odd) {
+    transform: translateX(0);
+  }
+  
+  .capsule-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .capsule-title {
+    font-size: 1.5rem;
+  }
+  
+  .capsule-actions {
+    flex-direction: column;
+  }
+  
+  .capsule-actions .btn {
+    width: 100%;
+  }
+}
+
+/* 加载动画 */
+.time-capsule {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: capsuleFadeIn 0.8s ease-out forwards;
+}
+
+.time-capsule:nth-child(1) { animation-delay: 0.1s; }
+.time-capsule:nth-child(2) { animation-delay: 0.2s; }
+.time-capsule:nth-child(3) { animation-delay: 0.3s; }
+.time-capsule:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes capsuleFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 时间胶囊悬停发光效果 */
+.time-capsule:hover::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(circle at center, var(--accent-light) 0%, transparent 70%);
+  opacity: 0.1;
+  border-radius: 20px;
+  z-index: -1;
+  pointer-events: none;
+}
+</style>

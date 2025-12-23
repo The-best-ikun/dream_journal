@@ -1,0 +1,469 @@
+---
+layout: base.njk
+title: 博客
+description: 记录思考、技术与生活的点点滴滴
+keywords: 博客, 文章, 思考, 技术, 生活
+---
+
+<section class="blog-section">
+  <div class="section-header">
+    <h1 class="handwriting">思绪栖息地</h1>
+    <p class="section-subtitle">在这里，文字与思想自由生长</p>
+  </div>
+  
+  <div class="blog-filters glass">
+    <div class="filter-group">
+      <h3>心情标签</h3>
+      <div class="mood-filters" id="moodFilters">
+        <button class="filter-btn active" data-mood="all">
+          <span class="mood-emoji">🌈</span>
+          <span>全部</span>
+        </button>
+        <button class="filter-btn" data-mood="💡">
+          <span class="mood-emoji">💡</span>
+          <span>思考</span>
+        </button>
+        <button class="filter-btn" data-mood="🔧">
+          <span class="mood-emoji">🔧</span>
+          <span>技术</span>
+        </button>
+        <button class="filter-btn" data-mood="🌿">
+          <span class="mood-emoji">🌿</span>
+          <span>生活</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="filter-group">
+      <h3>技术标签</h3>
+      <div class="tag-filters" id="tagFilters">
+        <button class="filter-btn active" data-tag="all">全部</button>
+        <button class="filter-btn" data-tag="JavaScript">JavaScript</button>
+        <button class="filter-btn" data-tag="CSS">CSS</button>
+        <button class="filter-btn" data-tag="React">React</button>
+        <button class="filter-btn" data-tag="Vue">Vue</button>
+        <button class="filter-btn" data-tag="设计">设计</button>
+        <button class="filter-btn" data-tag="生活">生活</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="blog-posts" id="blogPosts">
+    {% for post in collections.posts %}
+    <article class="blog-post glass" 
+             data-mood="{{ post.data.mood or '💡' }}" 
+             data-tags="{{ post.data.tags | join(',') }}">
+      <div class="post-header">
+        <div class="post-mood">
+          <span class="mood-emoji">{{ post.data.mood or '💡' }}</span>
+        </div>
+        
+        <div class="post-meta">
+          <time datetime="{{ post.date | date("yyyy-MM-dd") }}">
+            {{ post.date | date("yyyy年MM月dd日") }}
+          </time>
+          <span class="reading-time">阅读时间：{{ post.data.readingTime or '5' }}分钟</span>
+        </div>
+      </div>
+      
+      <div class="post-content">
+        <h2 class="post-title">
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+        </h2>
+        
+        <p class="post-excerpt">{{ post.data.description or post.content | striptags | truncate(150) }}</p>
+        
+        {% if post.data.tags %}
+        <div class="post-tags">
+          {% for tag in post.data.tags %}
+          <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="post-footer">
+        <a href="{{ post.url }}" class="read-more-btn">
+          阅读全文
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  
+  <div class="no-results" id="noResults" style="display: none;">
+    <div class="glass">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+        <path d="M21 21l-4.35-4.35M11 8v6m3-3H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <h3>暂无相关文章</h3>
+      <p>试试其他标签或心情吧</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.blog-section {
+  padding: 2rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.blog-filters {
+  padding: 2rem;
+  margin-bottom: 3rem;
+  border-radius: 16px;
+}
+
+.filter-group {
+  margin-bottom: 2rem;
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.filter-group h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.mood-filters,
+.tag-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent-light);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 12px rgba(168, 218, 220, 0.3);
+}
+
+.mood-emoji {
+  font-size: 1.1rem;
+}
+
+.blog-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.blog-post {
+  padding: 2rem;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-post:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px var(--shadow-medium);
+}
+
+.blog-post::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-secondary);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.post-mood {
+  font-size: 1.5rem;
+}
+
+.post-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.reading-time {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.post-title {
+  margin-bottom: 1rem;
+}
+
+.post-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.post-title a:hover {
+  color: var(--accent-light);
+}
+
+.post-excerpt {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background: var(--accent-light);
+  color: white;
+  transform: scale(1.05);
+}
+
+.post-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.read-more-btn:hover {
+  background: var(--accent-light);
+  color: white;
+  transform: translateX(4px);
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+}
+
+.no-results .glass {
+  display: inline-block;
+  padding: 3rem;
+  border-radius: 16px;
+}
+
+.no-results svg {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.no-results p {
+  color: var(--text-secondary);
+}
+
+/* 动画效果 */
+.blog-post {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: postFadeIn 0.6s ease-out forwards;
+}
+
+.blog-post:nth-child(1) { animation-delay: 0.1s; }
+.blog-post:nth-child(2) { animation-delay: 0.2s; }
+.blog-post:nth-child(3) { animation-delay: 0.3s; }
+.blog-post:nth-child(4) { animation-delay: 0.4s; }
+.blog-post:nth-child(5) { animation-delay: 0.5s; }
+.blog-post:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes postFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 隐藏动画 */
+.blog-post.hidden {
+  display: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .blog-posts {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .blog-post {
+    padding: 1.5rem;
+  }
+  
+  .post-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .post-meta {
+    align-items: flex-start;
+  }
+  
+  .post-title a {
+    font-size: 1.3rem;
+  }
+}
+</style>
+
+<script>
+// 博客过滤器功能
+document.addEventListener('DOMContentLoaded', function() {
+  const moodButtons = document.querySelectorAll('#moodFilters .filter-btn');
+  const tagButtons = document.querySelectorAll('#tagFilters .filter-btn');
+  const blogPosts = document.querySelectorAll('.blog-post');
+  const noResults = document.getElementById('noResults');
+  
+  let currentMood = 'all';
+  let currentTag = 'all';
+  
+  // 心情过滤
+  moodButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      moodButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      currentMood = this.dataset.mood;
+      filterPosts();
+    });
+  });
+  
+  // 标签过滤
+  tagButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      tagButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      currentTag = this.dataset.tag;
+      filterPosts();
+    });
+  });
+  
+  // 过滤文章
+  function filterPosts() {
+    let visibleCount = 0;
+    
+    blogPosts.forEach(post => {
+      const postMood = post.dataset.mood;
+      const postTags = post.dataset.tags || '';
+      
+      const moodMatch = currentMood === 'all' || postMood === currentMood;
+      const tagMatch = currentTag === 'all' || postTags.includes(currentTag);
+      
+      if (moodMatch && tagMatch) {
+        post.classList.remove('hidden');
+        post.style.display = 'block';
+        visibleCount++;
+      } else {
+        post.classList.add('hidden');
+        post.style.display = 'none';
+      }
+    });
+    
+    // 显示或隐藏"无结果"提示
+    if (visibleCount === 0) {
+      noResults.style.display = 'block';
+    } else {
+      noResults.style.display = 'none';
+    }
+    
+    // 重新添加动画效果
+    reanimateVisiblePosts();
+  }
+  
+  // 重新动画显示的文章
+  function reanimateVisiblePosts() {
+    let delay = 0.1;
+    blogPosts.forEach(post => {
+      if (!post.classList.contains('hidden')) {
+        post.style.animation = 'none';
+        post.offsetHeight; // 触发重排
+        post.style.animation = `postFadeIn 0.6s ease-out ${delay}s forwards`;
+        delay += 0.1;
+      }
+    });
+  }
+});
+</script>

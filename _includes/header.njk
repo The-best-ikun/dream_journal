@@ -1,0 +1,186 @@
+<header class="glass-header">
+  <nav class="container nav-container">
+    <div class="nav-brand">
+      <a href="/" class="brand-link handwriting">
+        {{ site.title }}
+      </a>
+    </div>
+    
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="/" class="nav-link {% if page.url == '/' %}active{% endif %}">首页</a>
+      </li>
+      <li class="nav-item">
+        <a href="/about/" class="nav-link {% if '/about' in page.url %}active{% endif %}">关于</a>
+      </li>
+      <li class="nav-item">
+        <a href="/blog/" class="nav-link {% if '/blog' in page.url %}active{% endif %}">博客</a>
+      </li>
+      <li class="nav-item">
+        <a href="/projects/" class="nav-link {% if '/projects' in page.url %}active{% endif %}">项目</a>
+      </li>
+      <li class="nav-item">
+        <a href="/gallery/" class="nav-link {% if '/gallery' in page.url %}active{% endif %}">相册</a>
+      </li>
+      <li class="nav-item">
+        <a href="/guestbook/" class="nav-link {% if '/guestbook' in page.url %}active{% endif %}">留言</a>
+      </li>
+    </ul>
+    
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+.glass-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  min-height: 60px;
+}
+
+.brand-link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.brand-link:hover {
+  color: var(--accent-light);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+  background: var(--bg-secondary);
+  transform: rotate(180deg);
+}
+
+.sun-icon {
+  display: block;
+}
+
+.moon-icon {
+  display: none;
+}
+
+[data-theme="dark"] .sun-icon {
+  display: none;
+}
+
+[data-theme="dark"] .moon-icon {
+  display: block;
+}
+
+/* 移动端响应式 */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.75rem 0;
+  }
+  
+  .nav-menu {
+    display: none;
+  }
+  
+  .brand-link {
+    font-size: 1.2rem;
+  }
+}
+
+/* 主内容区域为固定导航预留空间 */
+main {
+  padding-top: 80px;
+}
+
+/* 为所有非首页的section添加顶部间距 */
+main section {
+  margin-top: 80px;
+}
+
+/* 首页特殊处理 */
+.hero-section {
+  margin-top: 0 !important;
+  padding-top: 40px !important;
+}
+</style>
