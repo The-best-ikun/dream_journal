@@ -13,7 +13,7 @@ keywords: 留言, 交流, 反馈, 联系
   
   <div class="guestbook-container">
     <!-- 留言表单 -->
-    <div class="message-form-section glass">
+    <div class="message-form-section">
       <h2>写下你的留言</h2>
       <form id="messageForm" class="message-form">
         <div class="form-group">
@@ -34,11 +34,11 @@ keywords: 留言, 交流, 反馈, 联系
         <div class="form-group">
           <label for="mood">心情标签</label>
           <div class="mood-selector">
-            <button type="button" class="mood-btn" data-mood="😊">😊 开心</button>
-            <button type="button" class="mood-btn" data-mood="🤔">🤔 思考</button>
-            <button type="button" class="mood-btn" data-mood="🌟">🌟 赞叹</button>
-            <button type="button" class="mood-btn" data-mood="📚">📚 学习</button>
-            <button type="button" class="mood-btn" data-mood="🌿">🌿 自然</button>
+            <button type="button" class="mood-btn" data-mood="开心">开心</button>
+            <button type="button" class="mood-btn" data-mood="思考">思考</button>
+            <button type="button" class="mood-btn" data-mood="赞叹">赞叹</button>
+            <button type="button" class="mood-btn" data-mood="学习">学习</button>
+            <button type="button" class="mood-btn" data-mood="自然">自然</button>
           </div>
           <input type="hidden" id="mood" name="mood" value="">
           <input type="hidden" id="replyTo" name="replyTo" value="">
@@ -68,13 +68,13 @@ keywords: 留言, 交流, 反馈, 联系
         <div class="message-item">
           <div class="message-header">
             <div class="message-author">
-              <div class="author-avatar">👤</div>
+              <div class="author-avatar"></div>
               <div class="author-info">
                 <div class="author-name">访客示例</div>
                 <div class="message-date">2024-03-15</div>
               </div>
             </div>
-            <div class="message-mood">😊</div>
+            <div class="message-mood">思考</div>
           </div>
           <div class="message-content">
             <p>这是一个示例留言，展示留言板的样式。你的留言将会显示在这里，与其他访客分享你的想法！</p>
@@ -116,18 +116,13 @@ keywords: 留言, 交流, 反馈, 联系
 }
 
 .section-header h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  background: var(--gradient-secondary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
 }
 
-.section-subtitle {
-  font-size: 1.2rem;
+.section-header p {
+  font-size: 1.05rem;
   color: var(--text-secondary);
-  font-style: italic;
 }
 
 .guestbook-container {
@@ -137,18 +132,20 @@ keywords: 留言, 交流, 反馈, 联系
 
 .message-form-section {
   padding: 2rem;
-  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
 }
 
 .message-form-section h2 {
-  margin-bottom: 2rem;
-  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
 .message-form {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .form-group {
@@ -157,54 +154,57 @@ keywords: 留言, 交流, 反馈, 联系
 }
 
 .form-group label {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 500;
+  font-size: 0.9rem;
   color: var(--text-primary);
 }
 
 .form-group input,
 .form-group textarea {
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: inherit;
   background: var(--bg-primary);
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--accent-light);
-  box-shadow: 0 0 0 3px rgba(168, 218, 220, 0.1);
+  border-color: var(--accent);
 }
 
 .mood-selector {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .mood-btn {
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--border-color);
-  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
   background: var(--bg-primary);
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--text-secondary);
 }
 
 .mood-btn:hover {
-  border-color: var(--accent-light);
-  transform: translateY(-2px);
+  border-color: var(--accent-warm);
+  color: var(--accent-warm);
 }
 
 .mood-btn.active {
-  background: var(--gradient-primary);
-  color: white;
-  border-color: transparent;
+  background: var(--accent-warm);
+  border-color: var(--accent-warm);
+  color: #fff;
 }
 
 .submit-btn {
@@ -212,68 +212,78 @@ keywords: 留言, 交流, 反馈, 联系
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: var(--gradient-primary);
-  color: white;
+  padding: 0.7rem 1.5rem;
+  background: var(--accent);
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
   font-weight: 500;
+  font-family: inherit;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(168, 218, 220, 0.3);
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.messages-section {
+  margin-top: 1rem;
 }
 
 .messages-section h2 {
-  margin-bottom: 2rem;
-  color: var(--text-primary);
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 .messages-list {
   display: grid;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .message-item {
-  padding: 1.5rem;
+  padding: 1.25rem;
   background: var(--bg-card);
-  border-radius: 12px;
   border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  border-radius: 6px;
+  transition: box-shadow 0.2s ease;
 }
 
 .message-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px var(--shadow-medium);
+  box-shadow: var(--shadow-sm);
 }
 
 .message-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .message-author {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .author-avatar {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: var(--gradient-primary);
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
 }
 
 .author-info {
@@ -282,265 +292,183 @@ keywords: 留言, 交流, 反馈, 联系
 }
 
 .author-name {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.92rem;
   color: var(--text-primary);
 }
 
 .message-date {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 .message-mood {
-  font-size: 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
 }
 
 .message-content {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text-primary);
+  font-size: 0.92rem;
   line-height: 1.6;
 }
 
 .message-actions {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .like-btn,
 .reply-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem 1rem;
+  gap: 0.3rem;
+  padding: 0.35rem 0.7rem;
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 4px;
   background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-family: inherit;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.like-btn:hover,
+.like-btn:hover {
+  border-color: var(--accent-warm);
+  color: var(--accent-warm);
+}
+
 .reply-btn:hover {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .like-btn.liked {
-  color: var(--accent-pink);
-  border-color: var(--accent-pink);
-  background: rgba(255, 175, 204, 0.1);
+  color: var(--accent-warm);
+  border-color: var(--accent-warm);
+  background: rgba(200, 130, 110, 0.08);
+}
+
+.like-btn.liked svg {
+  fill: var(--accent-warm);
 }
 
 .no-messages {
   text-align: center;
-  padding: 3rem;
+  padding: 2rem;
   color: var(--text-secondary);
 }
 
 .empty-state svg {
-  margin-bottom: 1rem;
-  opacity: 0.5;
+  margin-bottom: 0.75rem;
+  opacity: 0.4;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .guestbook-section {
-    padding: 1rem;
-  }
-  
-  .mood-selector {
-    justify-content: center;
-  }
-  
-  .message-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .message-actions {
-    justify-content: center;
-  }
+.empty-state p {
+  font-size: 0.9rem;
 }
 
-/* 树形回复样式 */
+/* 树形回复 */
 .message-reply {
-  margin-left: 3rem;
-  margin-top: 1rem;
-  border-left: 3px solid var(--border-color);
+  margin-left: 2.5rem;
+  margin-top: 0.75rem;
+  border-left: 2px solid var(--border-color);
   padding-left: 1rem;
-  background: var(--bg-secondary);
-  border-radius: 0 8px 8px 0;
-}
-
-.message-reply:hover {
-  border-left-color: var(--accent-light);
 }
 
 .replies-section {
-  margin-top: 1rem;
-  border-top: 1px solid var(--border-color);
-  padding-top: 1rem;
-}
-
-.replies-header {
-  margin-bottom: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--divider);
 }
 
 .toggle-replies {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
   border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background: var(--bg-primary);
-  color: var(--text-secondary);
-  font-size: 0.85rem;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-family: inherit;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .toggle-replies:hover {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .replies-list {
   display: block;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .replies-list.hidden {
   display: none;
 }
 
-/* 回复预览样式 */
 .reply-preview {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   background: var(--bg-secondary);
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  border-left: 4px solid var(--accent-light);
+  border-radius: 4px;
+  border-left: 3px solid var(--accent);
+  font-size: 0.9rem;
 }
 
 .reply-preview span {
   color: var(--text-primary);
-  font-size: 0.9rem;
 }
 
 .cancel-reply {
-  padding: 0.25rem 0.75rem;
-  background: var(--accent-pink);
-  color: white;
+  padding: 0.2rem 0.6rem;
+  background: var(--accent-warm);
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  font-size: 0.8rem;
+  border-radius: 3px;
+  font-size: 0.78rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
 .cancel-reply:hover {
-  background: var(--accent-pink);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-/* 点赞按钮优化 */
-.like-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.like-btn:hover {
-  border-color: var(--accent-pink);
-  color: var(--accent-pink);
-}
-
-.like-btn.liked {
-  color: var(--accent-pink);
-  border-color: var(--accent-pink);
-  background: rgba(255, 175, 204, 0.1);
-}
-
-.like-btn.liked svg {
-  fill: var(--accent-pink);
-}
-
-/* 回复按钮优化 */
-.reply-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.reply-btn:hover {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
-}
-
-/* 网站链接样式 */
 .website-link {
-  color: var(--accent-light);
+  color: var(--accent);
   text-decoration: none;
-  margin-left: 0.5rem;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  margin-left: 0.3rem;
+  opacity: 0.6;
+  font-size: 0.85rem;
 }
 
 .website-link:hover {
   opacity: 1;
 }
 
-/* 深色模式适配 */
-[data-theme="dark"] .message-item {
-  background: var(--bg-secondary);
-  border-color: rgba(255, 255, 255, 0.1);
-}
+@media (max-width: 768px) {
+  .guestbook-section {
+    padding: 1rem;
+  }
 
-[data-theme="dark"] .message-reply {
-  background: var(--bg-primary);
-  border-left-color: rgba(255, 255, 255, 0.2);
-}
+  .message-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
 
-[data-theme="dark"] .message-reply:hover {
-  border-left-color: var(--accent-light);
-}
-
-[data-theme="dark"] .mood-btn {
-  background: var(--bg-secondary);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .toggle-replies {
-  background: var(--bg-secondary);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .reply-preview {
-  background: var(--bg-primary);
-  border-left-color: var(--accent-light);
+  .message-reply {
+    margin-left: 1rem;
+  }
 }
 </style>
 
@@ -718,7 +646,7 @@ function createMessageHTML(message, likedMessages = {}) {
             <div class="message-date">${message.date}</div>
           </div>
         </div>
-        <div class="message-mood">${message.mood || '😊'}</div>
+        <div class="message-mood">${message.mood || '思考'}</div>
       </div>
       <div class="message-content">
         <p>${escapeHtml(message.message)}</p>
@@ -923,13 +851,8 @@ notificationStyles.textContent = `
     font-weight: 500;
   }
   
-  .notification.success .notification-content {
-    background: var(--gradient-primary);
-  }
-  
-  .notification.error .notification-content {
-    background: var(--accent-pink);
-  }
+  .notification.success .notification-content { background: var(--accent); }
+  .notification.error .notification-content { background: var(--accent-warm); }
   
   .notification-close {
     background: none;

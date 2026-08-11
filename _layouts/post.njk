@@ -3,17 +3,13 @@ layout: base.njk
 ---
 
 <section class="blog-detail">
-  <article class="article-content glass">
+  <article class="article-content">
     <header class="article-header">
-      <div class="article-mood">
-        <span class="mood-emoji">{{ mood or '💡' }}</span>
-      </div>
-      
       <h1 class="article-title">{{ title }}</h1>
-      
+
       <div class="article-meta">
         <div class="meta-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
             <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2"/>
           </svg>
@@ -21,49 +17,43 @@ layout: base.njk
             {{ date | date("yyyy年MM月dd日") }}
           </time>
         </div>
-        
+
         <div class="meta-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
             <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <span>阅读时间：{{ readingTime or '5' }}分钟</span>
+          <span>{{ readingTime or '5' }} 分钟阅读</span>
         </div>
-        
+
         {% if tags %}
         <div class="meta-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" stroke="currentColor" stroke-width="2"/>
-            <line x1="7" y1="7" x2="7.01" y2="7" stroke="currentColor" stroke-width="2"/>
-          </svg>
-          <div class="article-tags">
-            {% for tag in tags %}
-            <span class="tag">{{ tag }}</span>
-            {% endfor %}
-          </div>
+          {% for tag in tags %}
+          <span class="article-tag">{{ tag }}</span>
+          {% endfor %}
         </div>
         {% endif %}
       </div>
     </header>
-    
+
     <div class="article-body">
       {{ content | safe }}
     </div>
-    
+
     {% if background %}
-    <section class="creation-background glass">
-      <h2 class="handwriting">🎨 创作背景</h2>
+    <section class="creation-background">
+      <h2>创作背景</h2>
       <div class="background-content">
         {{ background }}
       </div>
     </section>
     {% endif %}
-    
-    <nav class="article-navigation glass">
+
+    <nav class="article-navigation">
       <div class="nav-prev">
         {% if previousPost %}
         <a href="{{ previousPost.url }}" class="nav-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="nav-text">
@@ -73,17 +63,13 @@ layout: base.njk
         </a>
         {% endif %}
       </div>
-      
+
       <div class="nav-home">
         <a href="{{ '/blog/' | url }}" class="nav-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"/>
-            <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="2"/>
-          </svg>
-          <span>博客首页</span>
+          博客首页
         </a>
       </div>
-      
+
       <div class="nav-next">
         {% if nextPost %}
         <a href="{{ nextPost.url }}" class="nav-link">
@@ -91,7 +77,7 @@ layout: base.njk
             <span class="nav-label">下一篇</span>
             <span class="nav-title">{{ nextPost.data.title }}</span>
           </div>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </a>
@@ -103,151 +89,149 @@ layout: base.njk
 
 <style>
 .blog-detail {
+  max-width: 920px;
+  margin: 0 auto;
   padding: 2rem 0;
 }
 
 .article-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
   padding: 3rem;
   margin-bottom: 2rem;
 }
 
 .article-header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.article-mood {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--divider);
 }
 
 .article-title {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  line-height: 1.2;
-  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+  line-height: 1.25;
 }
 
 .article-meta {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+  font-size: 0.88rem;
+  color: var(--text-muted);
 }
 
 .meta-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
-.article-tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.tag {
-  background: var(--gradient-secondary);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
+.article-tag {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
   font-size: 0.8rem;
-  font-weight: 500;
 }
 
 .article-body {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--text-primary);
-  margin: 2rem 0;
-}
-
-.article-body h2,
-.article-body h3,
-.article-body h4 {
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
   color: var(--text-primary);
 }
 
 .article-body h2 {
-  font-size: 1.8rem;
-  border-left: 4px solid var(--accent-light);
-  padding-left: 1rem;
+  font-size: 1.7rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--divider);
 }
 
 .article-body h3 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.article-body h4 {
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
 }
 
 .article-body p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   text-align: justify;
 }
 
 .article-body ul,
 .article-body ol {
-  margin-bottom: 1.5rem;
-  padding-left: 2rem;
+  margin-bottom: 1.2rem;
+  padding-left: 1.5rem;
 }
 
 .article-body li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .article-body blockquote {
-  border-left: 4px solid var(--accent-pink);
-  padding-left: 1.5rem;
-  margin: 2rem 0;
+  margin: 1.8rem 0;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-secondary);
+  border-left: 3px solid var(--accent-warm);
+  border-radius: 0 6px 6px 0;
   color: var(--text-secondary);
   font-style: italic;
-  background: var(--bg-secondary);
-  padding: 1.5rem;
-  border-radius: 0 8px 8px 0;
+}
+
+.article-body blockquote p {
+  margin-bottom: 0;
 }
 
 .article-body code {
   background: var(--bg-secondary);
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
-  color: var(--accent-light-dark);
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.88em;
+  color: var(--accent-warm);
 }
 
 .article-body pre {
   background: var(--bg-secondary);
-  padding: 1.5rem;
-  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  border-radius: 6px;
   overflow-x: auto;
   margin: 1.5rem 0;
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .article-body pre code {
   background: transparent;
   padding: 0;
   color: var(--text-primary);
+  font-size: inherit;
 }
 
 .article-body table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
+  font-size: 0.95rem;
 }
 
 .article-body th,
 .article-body td {
-  padding: 0.75rem;
+  padding: 0.6rem 0.8rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
 }
@@ -255,31 +239,42 @@ layout: base.njk
 .article-body th {
   background: var(--bg-secondary);
   font-weight: 600;
+  color: var(--text-primary);
+}
+
+.article-body img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin: 1.5rem auto;
+  display: block;
+  border: 1px solid var(--border-color);
 }
 
 .creation-background {
   margin: 3rem 0;
   padding: 2rem;
-  border-radius: 12px;
+  background: var(--bg-secondary);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
 }
 
 .creation-background h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   color: var(--text-primary);
-  text-align: center;
 }
 
 .background-content {
   color: var(--text-secondary);
+  font-size: 0.92rem;
   line-height: 1.7;
   font-style: italic;
 }
 
 .article-navigation {
   margin-top: 3rem;
-  padding: 2rem;
-  border-radius: 12px;
+  padding-top: 2rem;
+  border-top: 1px solid var(--divider);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 2rem;
@@ -289,33 +284,34 @@ layout: base.njk
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
 }
 
 .nav-link:hover {
   background: var(--bg-secondary);
-  color: var(--accent-light);
-  transform: translateY(-2px);
+  color: var(--accent);
 }
 
 .nav-text {
   display: flex;
   flex-direction: column;
+  gap: 0.1rem;
 }
 
 .nav-label {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
-  margin-bottom: 0.25rem;
 }
 
 .nav-title {
   font-weight: 500;
+  font-size: 0.9rem;
   line-height: 1.3;
 }
 
@@ -325,7 +321,7 @@ layout: base.njk
 
 .nav-home .nav-link {
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .nav-prev .nav-link {
@@ -334,54 +330,36 @@ layout: base.njk
 
 .nav-next .nav-link {
   justify-content: flex-end;
-}
-
-.nav-next .nav-text {
   text-align: right;
 }
 
 @media (max-width: 768px) {
   .article-content {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
   }
-  
+
   .article-title {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
-  
+
   .article-meta {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.6rem;
+    align-items: flex-start;
   }
-  
+
   .article-navigation {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.5rem;
   }
-  
+
   .nav-home {
     order: -1;
   }
-  
+
   .nav-prev .nav-link,
   .nav-next .nav-link {
     justify-content: center;
-  }
-  
-  .nav-next .nav-text {
-    text-align: center;
-  }
-}
-
-/* 文章内容动画 */
-.article-body {
-  opacity: 0;
-  animation: articleFadeIn 0.8s ease-out 0.3s forwards;
-}
-
-@keyframes articleFadeIn {
-  to {
-    opacity: 1;
   }
 }
 </style>

@@ -4,6 +4,8 @@ title: 城市天际线的黄昏
 date: 2024-03-12
 image: https://picsum.photos/seed/city-skyline/800/600.jpg
 location: 上海外滩
+latitude: 31.2400
+longitude: 121.4908
 tags: [城市, 建筑, 黄昏]
 note: 现代化都市的轮廓在黄昏时分展现出独特的魅力
 ---

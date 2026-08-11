@@ -4,6 +4,8 @@ title: 夕阳下的海岸线
 date: 2024-03-05
 image: https://picsum.photos/seed/sunset-coast/800/600.jpg
 location: 福建厦门
+latitude: 24.4798
+longitude: 118.0894
 tags: [自然, 夕阳, 海岸]
 note: 海浪轻柔地拍打着沙滩，夕阳将整片海面染成了金色
 ---

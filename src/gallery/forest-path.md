@@ -4,6 +4,8 @@ title: 雨后的森林小径
 date: 2024-03-08
 image: https://picsum.photos/seed/forest-path/800/600.jpg
 location: 浙江杭州
+latitude: 30.2590
+longitude: 120.1526
 tags: [自然, 森林, 雨后]
 note: 雨后的森林里，空气中充满了泥土和树叶的清新味道
 ---
