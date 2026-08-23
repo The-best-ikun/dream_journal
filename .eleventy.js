@@ -67,6 +67,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/posts/images");
   eleventyConfig.addPassthroughCopy("src/projects/images");
   eleventyConfig.addPassthroughCopy("src/gallery/images");
+  eleventyConfig.addPassthroughCopy("CNAME");
 
   // Markdown plugins
   const markdownIt = require("markdown-it");
