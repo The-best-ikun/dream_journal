@@ -1,0 +1,280 @@
+---
+layout: base.njk
+title: 足迹
+description: 用双脚丈量世界，用镜头记录旅途
+keywords: 足迹, 旅行, 地图, 摄影
+---
+
+<section class="travel-section">
+  <div class="section-header">
+    <h1 class="handwriting">足迹</h1>
+    <p class="section-subtitle">用双脚丈量世界，用镜头记录旅途</p>
+  </div>
+
+  <div id="travelMap"></div>
+
+  <div class="travel-list">
+    <h2>到访之地</h2>
+    <div class="travel-places">
+      {% for photo in collections.gallery | reverse %}
+      <a href="{{ photo.url | url }}" class="travel-card">
+        <div class="travel-card-img">
+          <img src="{{ photo.data.image }}" alt="{{ photo.data.title }}" loading="lazy">
+        </div>
+        <div class="travel-card-info">
+          <h3>{{ photo.data.title }}</h3>
+          <span class="travel-location">{{ photo.data.location }}</span>
+          <span class="travel-date">{{ photo.data.date | date("yyyy.MM.dd") }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+.travel-section {
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+#travelMap {
+  width: 100%;
+  height: 480px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 2.5rem;
+  z-index: 1;
+}
+
+/* 修复 Leaflet 与站点主题色的冲突 */
+.leaflet-container {
+  background: var(--bg-secondary);
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 6px;
+  padding: 0;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  min-width: 200px;
+}
+
+.map-popup {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-popup img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px 6px 0 0;
+}
+
+.map-popup-info {
+  padding: 0.6rem 0.8rem;
+}
+
+.map-popup-info h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: #2C2416;
+}
+
+.map-popup-info .loc {
+  font-size: 0.82rem;
+  color: #6B5E4F;
+}
+
+.map-popup-info .date {
+  font-size: 0.78rem;
+  color: #9C8F7E;
+  margin-top: 0.15rem;
+}
+
+.travel-list h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.travel-places {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.travel-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.travel-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.travel-card-img {
+  width: 100px;
+  height: 75px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+}
+
+.travel-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.travel-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.travel-card-info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.travel-location {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 0.1rem;
+}
+
+.travel-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  #travelMap {
+    height: 320px;
+  }
+
+  .travel-places {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mapEl = document.getElementById('travelMap');
+  if (!mapEl) return;
+
+  // 从模板数据生成标记
+  const places = [
+    {% for photo in collections.gallery %}
+    {
+      title: "{{ photo.data.title | replace('"', '\\"') }}",
+      location: "{{ photo.data.location | replace('"', '\\"') }}",
+      date: "{{ photo.data.date | date('yyyy.MM.dd') }}",
+      lat: {{ photo.data.latitude }},
+      lng: {{ photo.data.longitude }},
+      image: "{{ photo.data.image | replace('"', '\\"') }}",
+      url: "{{ photo.url | replace('"', '\\"') }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ];
+
+  if (places.length === 0) return;
+
+  const map = L.map('travelMap', {
+    zoomControl: true,
+    scrollWheelZoom: true
+  });
+
+  // ===== 底图（CartoDB Voyager，清晰现代）=====
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>, &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 19
+  }).addTo(map);
+
+  // ===== 加载中国省份边界 =====
+  fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
+    .then(function(res) { return res.json(); })
+    .then(function(geoJson) {
+      L.geoJSON(geoJson, {
+        style: {
+          color: '#5C8D89',
+          weight: 1.2,
+          opacity: 0.6,
+          fillOpacity: 0
+        }
+      }).addTo(map);
+    })
+    .catch(function() {
+      // 边界加载失败不影响地图基本功能
+    });
+
+  // ===== 标记 =====
+  var bounds = [];
+
+  places.forEach(function(p) {
+    var marker = L.marker([p.lat, p.lng]).addTo(map);
+    bounds.push([p.lat, p.lng]);
+
+    var popupHtml =
+      '<div class="map-popup">' +
+        '<img src="' + p.image + '" alt="' + p.title + '" loading="lazy">' +
+        '<div class="map-popup-info">' +
+          '<h4>' + p.title + '</h4>' +
+          '<div class="loc">' + p.location + '</div>' +
+          '<div class="date">' + p.date + '</div>' +
+        '</div>' +
+      '</div>';
+
+    marker.bindPopup(popupHtml);
+  });
+
+  if (bounds.length > 0) {
+    map.fitBounds(bounds, { padding: [40, 40] });
+  }
+});
+</script>

@@ -1,0 +1,197 @@
+---
+layout: base.njk
+title: 爱玩的游戏
+description: 在虚拟世界中体验不同的故事与挑战
+---
+
+<section class="hobby-detail">
+  <div class="section-header">
+    <a href="{{ '/hobbies/' | url }}" class="back-link">&larr; 兴趣爱好</a>
+    <div class="hobby-title-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7.5 8h9a5.5 5.5 0 0 1 5.4 5.6l-.6 3.4a3.5 3.5 0 0 1-6.8.9l-.9-2h-3.2l-.9 2a3.5 3.5 0 0 1-6.8-.9l-.6-3.4A5.5 5.5 0 0 1 7.5 8z"/>
+        <path d="M6 11v4M4 13h4"/>
+        <path d="M15.5 12.5h.01M17.5 14.5h.01"/>
+      </svg>
+    </div>
+    <h1 class="handwriting">爱玩的游戏</h1>
+    <p class="section-subtitle">在虚拟世界中体验不同的故事与挑战</p>
+  </div>
+
+  <div class="hobby-detail-content">
+    <p>游戏对我来说不仅是消遣，更是一种互动式的艺术体验。以下是我最近在玩和喜欢的作品：</p>
+
+    <div class="item-list">
+      <div class="item-card">
+        <div class="item-placeholder">截图</div>
+        <div class="item-info">
+          <h3>游戏名称 A</h3>
+          <span class="item-meta">类型 / 平台</span>
+          <p>在这里写下你对这款游戏的感受、推荐理由或有趣的故事。</p>
+          <div class="item-tags">
+            <span class="item-tag">标签1</span>
+            <span class="item-tag">标签2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-card">
+        <div class="item-placeholder">截图</div>
+        <div class="item-info">
+          <h3>游戏名称 B</h3>
+          <span class="item-meta">类型 / 平台</span>
+          <p>在这里写下你对这款游戏的感受、推荐理由或有趣的故事。</p>
+          <div class="item-tags">
+            <span class="item-tag">标签1</span>
+            <span class="item-tag">标签2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-card">
+        <div class="item-placeholder">截图</div>
+        <div class="item-info">
+          <h3>游戏名称 C</h3>
+          <span class="item-meta">类型 / 平台</span>
+          <p>在这里写下你对这款游戏的感受、推荐理由或有趣的故事。</p>
+          <div class="item-tags">
+            <span class="item-tag">标签1</span>
+            <span class="item-tag">标签2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hobby-detail {
+  padding: 2rem 0;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.hobby-title-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 0.6rem;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hobby-title-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.hobby-detail-content p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.item-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.item-placeholder {
+  width: 100px;
+  height: 75px;
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+  color: var(--text-primary);
+}
+
+.item-meta {
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.item-info p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0.4rem 0;
+  text-align: left;
+}
+
+.item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.item-tag {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+@media (max-width: 640px) {
+  .item-card {
+    flex-direction: column;
+  }
+  .item-placeholder {
+    width: 100%;
+    height: 120px;
+  }
+}
+</style>
