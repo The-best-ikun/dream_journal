@@ -1,27 +1,18 @@
 ---
 layout: base.njk
 title: 爱玩的运动
-description: 挥洒汗水让思维更清晰
+description: 没什么运动天赋，就是偶尔动动，出出汗反而精神
 ---
 
 <section class="hobby-detail">
   <div class="section-header">
     <a href="{{ '/hobbies/' | url }}" class="back-link">&larr; 兴趣爱好</a>
-    <div class="hobby-title-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2.5" y="9" width="2.5" height="6" rx="1"/>
-        <rect x="6" y="7.5" width="2.5" height="9" rx="1"/>
-        <rect x="15.5" y="7.5" width="2.5" height="9" rx="1"/>
-        <rect x="19" y="9" width="2.5" height="6" rx="1"/>
-        <path d="M8.5 12h7"/>
-      </svg>
-    </div>
     <h1 class="handwriting">爱玩的运动</h1>
-    <p class="section-subtitle">挥洒汗水让思维更清晰</p>
+    <p class="section-subtitle">没什么运动天赋，就是偶尔动动，出出汗反而精神</p>
   </div>
 
   <div class="hobby-detail-content">
-    <p>运动是保持创造力的秘诀，在呼吸与节奏中找到内心的平衡。</p>
+    <p>运动这事我真不在行，但久坐实在太难受，隔段时间动一动、出出汗，整个人会舒服不少。常玩的、想试试的，记在下面：</p>
 
     <div class="item-list">
       <div class="item-card">
@@ -86,24 +77,6 @@ description: 挥洒汗水让思维更清晰
   color: var(--accent);
 }
 
-.hobby-title-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 0.6rem;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hobby-title-icon svg {
-  width: 26px;
-  height: 26px;
-}
-
 .hobby-detail-content p {
   font-size: 0.95rem;
   line-height: 1.7;
@@ -125,12 +98,11 @@ description: 挥洒汗水让思维更清晰
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 
 .item-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .item-placeholder {

@@ -1,24 +1,18 @@
 ---
 layout: base.njk
 title: 阅读与思考
-description: 书籍是随身携带的精神角落
+description: 看得杂、读得不深，图个自己开心
 ---
 
 <section class="hobby-detail">
   <div class="section-header">
     <a href="{{ '/hobbies/' | url }}" class="back-link">&larr; 兴趣爱好</a>
-    <div class="hobby-title-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 5.5C10 4 7 3.8 4 5v14c3-1.2 6-1.4 8 0V5.5z"/>
-        <path d="M12 5.5C14 4 17 3.8 20 5v14c-3-1.2-6-1.4-8 0V5.5z"/>
-      </svg>
-    </div>
     <h1 class="handwriting">阅读与思考</h1>
-    <p class="section-subtitle">书籍是随身携带的精神角落</p>
+    <p class="section-subtitle">看得杂、读得不深，图个自己开心</p>
   </div>
 
   <div class="hobby-detail-content">
-    <p>在文字中遇见更大的世界，每一本书都是一段独特的旅程。</p>
+    <p>读书是我少数能坚持下来的爱好了，不过看得慢、记得少，主要图个安静。最近读的几本，简单记两句：</p>
 
     <div class="item-list">
       <div class="item-card">
@@ -80,22 +74,6 @@ description: 书籍是随身携带的精神角落
 .back-link:hover {
   color: var(--accent);
 }
-.hobby-title-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 0.6rem;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hobby-title-icon svg {
-  width: 26px;
-  height: 26px;
-}
 .hobby-detail-content p {
   font-size: 0.95rem;
   line-height: 1.7;
@@ -115,11 +93,10 @@ description: 书籍是随身携带的精神角落
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 .item-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 .item-placeholder {
   width: 100px;

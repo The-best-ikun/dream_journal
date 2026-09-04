@@ -1,87 +1,94 @@
 ---
 layout: base.njk
 title: 兴趣爱好
-description: 游戏、运动、以及那些让生活更有趣的事
-keywords: 兴趣爱好, 游戏, 运动, 阅读
+description: 平时喜欢玩的东西 — 游戏、运动、阅读、音乐
+keywords: 兴趣爱好, 游戏, 运动, 阅读, 音乐
 useAos: true
 ---
 
-<section class="hobbies-section">
-  <div class="section-header">
+<section class="hobby-section">
+  <div class="section-header" data-aos="fade-up">
     <h1 class="handwriting">兴趣爱好</h1>
-    <p class="section-subtitle">生活不止代码，还有热爱的一切</p>
+    <p class="section-subtitle">都是些没什么门槛的小爱好，用来打发时间、给自己放松一下</p>
   </div>
 
   <div class="hobby-grid">
     <a href="{{ '/hobbies/games/' | url }}" class="hobby-card" data-aos="fade-up">
-      <span class="hobby-index">01</span>
+      <div class="hobby-index">01</div>
       <div class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M7.5 8h9a5.5 5.5 0 0 1 5.4 5.6l-.6 3.4a3.5 3.5 0 0 1-6.8.9l-.9-2h-3.2l-.9 2a3.5 3.5 0 0 1-6.8-.9l-.6-3.4A5.5 5.5 0 0 1 7.5 8z"/>
-          <path d="M6 11v4M4 13h4"/>
-          <path d="M15.5 12.5h.01M17.5 14.5h.01"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="6" y1="11" x2="10" y2="11"></line>
+          <line x1="8" y1="9" x2="8" y2="13"></line>
+          <line x1="15" y1="12" x2="15.01" y2="12"></line>
+          <line x1="18" y1="10" x2="18.01" y2="10"></line>
+          <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path>
         </svg>
       </div>
-      <h2>爱玩的游戏</h2>
-      <p>在虚拟世界中体验不同的故事与挑战，是我放松和汲取灵感的重要方式。</p>
-      <div class="hobby-card-link">查看详情 <span class="arrow">&rarr;</span></div>
+      <h2>游戏</h2>
+      <p>打游戏是最简单的快乐，累了就开一局，赢了开心，输了就睡。</p>
+      <span class="hobby-more">随便看看 →</span>
     </a>
 
     <a href="{{ '/hobbies/sports/' | url }}" class="hobby-card" data-aos="fade-up" data-aos-delay="100">
-      <span class="hobby-index">02</span>
+      <div class="hobby-index">02</div>
       <div class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2.5" y="9" width="2.5" height="6" rx="1"/>
-          <rect x="6" y="7.5" width="2.5" height="9" rx="1"/>
-          <rect x="15.5" y="7.5" width="2.5" height="9" rx="1"/>
-          <rect x="19" y="9" width="2.5" height="6" rx="1"/>
-          <path d="M8.5 12h7"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6.5 6.5h11v11h-11z"></path>
+          <path d="M21 21l-1-1"></path>
+          <path d="M3 3l1 1"></path>
+          <path d="M18 22l4-4"></path>
+          <path d="M2 6l4-4"></path>
+          <path d="M3 10h7v7H3z"></path>
+          <path d="M14 3h7v7h-7z"></path>
         </svg>
       </div>
-      <h2>爱玩的运动</h2>
-      <p>挥洒汗水让思维更清晰，运动是保持创造力的秘诀。</p>
-      <div class="hobby-card-link">查看详情 <span class="arrow">&rarr;</span></div>
+      <h2>运动</h2>
+      <p>偶尔动一动，出出汗，脑子反而清醒一点，久坐是真受不了。</p>
+      <span class="hobby-more">随便看看 →</span>
     </a>
 
     <a href="{{ '/hobbies/reading/' | url }}" class="hobby-card" data-aos="fade-up" data-aos-delay="200">
-      <span class="hobby-index">03</span>
+      <div class="hobby-index">03</div>
       <div class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 5.5C10 4 7 3.8 4 5v14c3-1.2 6-1.4 8 0V5.5z"/>
-          <path d="M12 5.5C14 4 17 3.8 20 5v14c-3-1.2-6-1.4-8 0V5.5z"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
         </svg>
       </div>
-      <h2>阅读与思考</h2>
-      <p>书籍是随身携带的精神角落，在文字中遇见更大的世界。</p>
-      <div class="hobby-card-link">查看详情 <span class="arrow">&rarr;</span></div>
+      <h2>阅读</h2>
+      <p>看的东西很杂，小说、随笔、有的没的，读到喜欢的就开心。</p>
+      <span class="hobby-more">随便看看 →</span>
     </a>
 
     <a href="{{ '/hobbies/music/' | url }}" class="hobby-card" data-aos="fade-up" data-aos-delay="300">
-      <span class="hobby-index">04</span>
+      <div class="hobby-index">04</div>
       <div class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18V5l10-2v13"/>
-          <circle cx="6.5" cy="18" r="2.5"/>
-          <circle cx="16.5" cy="16" r="2.5"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
         </svg>
       </div>
-      <h2>音乐与节奏</h2>
-      <p>旋律是流动的建筑，在音符中寻找情绪的共鸣。</p>
-      <div class="hobby-card-link">查看详情 <span class="arrow">&rarr;</span></div>
+      <h2>音乐</h2>
+      <p>走路、写作业、发呆的时候都要有歌，耳机一戴谁也不爱。</p>
+      <span class="hobby-more">随便看看 →</span>
     </a>
   </div>
 </section>
 
 <style>
-.hobbies-section {
-  padding: 2rem 0;
+/* 防止横向溢出 */
+html, body { overflow-x: hidden; }
+
+.hobby-section {
+  padding: 2.5rem 0;
   max-width: 960px;
   margin: 0 auto;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .section-header h1 {
@@ -96,21 +103,20 @@ useAos: true
 
 .hobby-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
 .hobby-card {
   position: relative;
   display: block;
+  padding: 2.2rem 1.8rem 1.8rem;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 2rem 1.75rem 1.75rem;
   text-decoration: none;
-  color: inherit;
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .hobby-card::before {
@@ -121,35 +127,31 @@ useAos: true
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--accent-warm));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .hobby-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--accent-light);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
 }
 
 .hobby-card:hover::before {
-  transform: scaleX(1);
+  opacity: 1;
 }
 
 .hobby-index {
   position: absolute;
-  top: 1.1rem;
-  right: 1.3rem;
+  top: 1rem;
+  right: 1.2rem;
   font-family: 'Kalam', cursive;
   font-size: 1.4rem;
   color: var(--accent-light);
-  line-height: 1;
 }
 
 .hobby-icon {
-  width: 56px;
-  height: 56px;
-  margin-bottom: 1.1rem;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -157,7 +159,7 @@ useAos: true
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  margin-bottom: 1.1rem;
 }
 
 .hobby-icon svg {
@@ -165,16 +167,9 @@ useAos: true
   height: 26px;
 }
 
-.hobby-card:hover .hobby-icon {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
 .hobby-card h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
   color: var(--text-primary);
 }
 
@@ -182,30 +177,18 @@ useAos: true
   font-size: 0.9rem;
   line-height: 1.7;
   color: var(--text-secondary);
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.2rem;
 }
 
-.hobby-card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.85rem;
+.hobby-more {
+  font-size: 0.82rem;
   color: var(--accent);
-  font-weight: 500;
-}
-
-.hobby-card-link .arrow {
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-
-.hobby-card:hover .hobby-card-link .arrow {
-  transform: translateX(4px);
 }
 
 @media (max-width: 768px) {
   .hobby-grid {
     grid-template-columns: 1fr;
+    gap: 1.1rem;
   }
 
   .section-header h1 {
@@ -213,16 +196,3 @@ useAos: true
   }
 }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (window.AOS) {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-out-cubic',
-      offset: 60,
-      once: false
-    });
-  }
-});
-</script>

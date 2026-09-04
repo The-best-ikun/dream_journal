@@ -1,110 +1,116 @@
 ---
 layout: base.njk
 title: 我的旅程
-description: 了解我的教育背景、工作经历和技能星系
+description: 了解我的学习经历和正在做的事
 keywords: 关于, 个人简介, 技能, 经历
 ---
 
 <section class="about-section">
   <div class="section-header">
     <h1 class="handwriting">我的旅程</h1>
-    <p class="section-subtitle">在代码与文字间，寻找诗意的栖居</p>
+    <p class="section-subtitle">一名在读研究生，随手记录点学习与日常</p>
   </div>
   
   <div class="about-content">
     <div class="intro-card">
       <div class="intro-content">
-        <h2>你好，我是<span class="handwriting">罗不丢</span></h2>
-        <p>一个热爱生活、追求技术美学的开发者。我相信代码不仅是逻辑的体现，更是一种艺术表达。在这个数字化的世界里，我试图用代码构建有温度的产品，用文字记录有思考的生活。</p>
-        <p>我的创作理念是：将技术的严谨性与人文的温度相结合，让每一个项目都承载着故事，让每一行代码都充满意义。</p>
+        <h2>你好，我是<span class="handwriting">{{ site.author }}</span></h2>
+        <p>一名在读研究生，写代码的时间不算长，水平嘛……还在路上。这个网站是我自己搭着玩的，边学边记，也算是个长期的练手作业。</p>
+        <p>没什么远大理想，就是想把正在学的东西弄明白一点，把踩过的坑记下来，留个记录。如果哪里做得不好，欢迎指出来，我会认真听、认真改的。</p>
       </div>
     </div>
     
     <div class="timeline-section">
-      <h2>成长轨迹</h2>
+      <h2>走过的路</h2>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
             <div class="timeline-date">2024 - 至今</div>
-            <h3>前端架构师</h3>
-            <p>负责大型Web应用的架构设计和技术选型，推动团队技术成长</p>
+            <h3>研究生在读</h3>
+            <p>跟着导师做研究，平时写点小工具、小脚本，把课上学的东西用到实践里</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
-            <div class="timeline-date">2021 - 2024</div>
-            <h3>全栈开发工程师</h3>
-            <p>参与多个创新项目，从需求分析到产品上线全流程参与</p>
+            <div class="timeline-date">2020 - 2024</div>
+            <h3>本科阶段</h3>
+            <p>接触到编程，做课程设计和一些入门小项目，学着把想法变成代码</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
-            <div class="timeline-date">2019 - 2021</div>
-            <h3>前端开发工程师</h3>
-            <p>专注于用户界面开发，提升用户体验和产品性能</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-date">2015 - 2019</div>
-            <h3>计算机科学学士</h3>
-            <p>在大学期间奠定了坚实的编程基础，培养了良好的学习习惯</p>
+            <div class="timeline-date">再早一些</div>
+            <h3>第一次接触代码</h3>
+            <p>写下人生第一行 Hello World，从此开始折腾，一直折腾到现在</p>
           </div>
         </div>
       </div>
     </div>
     
     <div class="skills-section">
-      <h2>技能雷达</h2>
-      <div class="skills-galaxy">
-        <canvas id="skillsCanvas" width="500" height="500"></canvas>
+      <h2>技能自评</h2>
+      <p class="skills-note">纯属个人自评，水平有限，仅供参考：</p>
+      <div class="skill-tier">
+        <h3>日常在用的</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">JavaScript</span>
+          <span class="skill-chip">CSS</span>
+          <span class="skill-chip">Vue</span>
+        </div>
+      </div>
+      <div class="skill-tier">
+        <h3>用过、但会忘的</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">React</span>
+          <span class="skill-chip">Node.js</span>
+          <span class="skill-chip">TypeScript</span>
+        </div>
+      </div>
+      <div class="skill-tier">
+        <h3>只是听说过的</h3>
+        <div class="skill-chips">
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">Docker</span>
+        </div>
       </div>
     </div>
     
     <div class="values-section">
-      <h2>价值理念</h2>
+      <h2>我的一点坚持</h2>
       <div class="values-grid grid grid-3">
         <div class="value-card">
-          <div class="value-icon"></div>
-          <h3>精益求精</h3>
-          <p>对代码质量和技术细节永不妥协，追求卓越的用户体验</p>
+          <h3>慢慢来</h3>
+          <p>基础还没打牢，先不急着标榜自己。</p>
         </div>
-        
+
         <div class="value-card">
-          <div class="value-icon"></div>
-          <h3>持续学习</h3>
-          <p>保持好奇心，拥抱新技术，在变化中寻找成长机会</p>
+          <h3>多记录</h3>
+          <p>学过的、踩过的坑都记下来，方便以后回顾。</p>
         </div>
-        
+
         <div class="value-card">
-          <div class="value-icon"></div>
-          <h3>团队协作</h3>
-          <p>相信团队的力量，通过沟通与合作创造更大价值</p>
+          <h3>多请教</h3>
+          <p>不懂就问，承认自己不会，比不懂装懂省心。</p>
         </div>
-        
+
         <div class="value-card">
-          <div class="value-icon"></div>
-          <h3>创新思维</h3>
-          <p>勇于尝试新方法，在约束中寻找创造性的解决方案</p>
+          <h3>多动手</h3>
+          <p>光看教程不长进，自己做出东西才算数。</p>
         </div>
-        
+
         <div class="value-card">
-          <div class="value-icon"></div>
-          <h3>用户至上</h3>
-          <p>始终站在用户角度思考，用同理心指导产品设计</p>
+          <h3>少熬夜</h3>
+          <p>学业重要，身体更重要，要可持续地折腾。</p>
         </div>
-        
+
         <div class="value-card">
-          <div class="value-icon"></div>
-          <h3>美学追求</h3>
-          <p>相信技术与艺术的结合能创造更有价值的体验</p>
+          <h3>按时吃饭</h3>
+          <p>写代码也不能饿着肚子，吃饭是头等大事。</p>
         </div>
       </div>
     </div>
@@ -242,22 +248,44 @@ keywords: 关于, 个人简介, 技能, 经历
 
 .skills-section > h2 {
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   text-align: center;
 }
 
-.skills-galaxy {
-  display: flex;
-  justify-content: center;
+.skills-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
 }
 
-#skillsCanvas {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
+.skill-tier {
+  max-width: 560px;
+  margin: 0 auto 1.4rem;
+  text-align: center;
+}
+
+.skill-tier h3 {
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.skill-chip {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: 999px;
   background: var(--bg-card);
-  aspect-ratio: 1;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
 }
 
 .values-section {
@@ -322,155 +350,3 @@ keywords: 关于, 个人简介, 技能, 经历
 }
 </style>
 
-<script>
-// 技能雷达图
-document.addEventListener('DOMContentLoaded', function() {
-  const canvas = document.getElementById('skillsCanvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width;
-  const H = canvas.height;
-
-  // 技能数据 — 半径方向排序，共 8 项
-  const skills = [
-    { name: 'JavaScript',  level: 90, color: '#5C8D89' },
-    { name: 'React',       level: 85, color: '#7FB5B0' },
-    { name: 'Vue',         level: 80, color: '#6BA3A0' },
-    { name: 'Node.js',     level: 75, color: '#C8826E' },
-    { name: 'CSS',         level: 85, color: '#D49484' },
-    { name: 'TypeScript',  level: 70, color: '#7FB5B0' },
-    { name: 'Python',      level: 65, color: '#C8826E' },
-    { name: 'Docker',      level: 60, color: '#6BA3A0' }
-  ];
-
-  const count = skills.length;
-  const cx = W / 2;
-  const cy = H / 2;
-  const radius = Math.min(W, H) * 0.35;
-
-  // 获取 CSS 变量
-  function cssVar(name) {
-    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    const textColor = cssVar('--text-primary') || '#2C2416';
-    const mutedColor = cssVar('--text-muted') || '#9C8F7E';
-    const borderColor = cssVar('--border-color') || '#E3DCD0';
-
-    // --- 网格：5 层同心多边形 ---
-    const layers = 5;
-    for (let l = 1; l <= layers; l++) {
-      const r = (radius / layers) * l;
-      ctx.beginPath();
-      for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
-        const x = cx + r * Math.cos(angle);
-        const y = cy + r * Math.sin(angle);
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.closePath();
-      ctx.strokeStyle = l === layers ? borderColor : borderColor;
-      ctx.lineWidth = l === layers ? 0.5 : 0.5;
-      ctx.stroke();
-    }
-
-    // --- 辐射线 ---
-    for (let i = 0; i < count; i++) {
-      const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.lineTo(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
-      ctx.strokeStyle = borderColor;
-      ctx.lineWidth = 0.5;
-      ctx.stroke();
-    }
-
-    // --- 数据区域 ---
-    ctx.beginPath();
-    for (let i = 0; i < count; i++) {
-      const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
-      const level = skills[i].level / 100;
-      const r = radius * level;
-      const x = cx + r * Math.cos(angle);
-      const y = cy + r * Math.sin(angle);
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-
-    // 半透明填充
-    const accent = cssVar('--accent') || '#5C8D89';
-    ctx.fillStyle = accent + '20';
-    ctx.fill();
-
-    // 数据线描边
-    ctx.strokeStyle = accent;
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    // --- 数据点 ---
-    for (let i = 0; i < count; i++) {
-      const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
-      const level = skills[i].level / 100;
-      const r = radius * level;
-      const x = cx + r * Math.cos(angle);
-      const y = cy + r * Math.sin(angle);
-
-      ctx.beginPath();
-      ctx.arc(x, y, 4, 0, Math.PI * 2);
-      ctx.fillStyle = skills[i].color;
-      ctx.fill();
-      ctx.strokeStyle = '#fff';
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-    }
-
-    // --- 标签 ---
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    for (let i = 0; i < count; i++) {
-      const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
-      const labelR = radius + 28;
-      const x = cx + labelR * Math.cos(angle);
-      const y = cy + labelR * Math.sin(angle);
-
-      ctx.font = '13px Noto Sans SC, sans-serif';
-      ctx.fillStyle = textColor;
-      ctx.fillText(skills[i].name, x, y - 7);
-
-      ctx.font = '10px Noto Sans SC, sans-serif';
-      ctx.fillStyle = mutedColor;
-      ctx.fillText(skills[i].level + '%', x, y + 10);
-    }
-
-    // --- 中心百分比刻度（最外层标 100%）---
-    ctx.font = '9px Noto Sans SC, sans-serif';
-    ctx.fillStyle = mutedColor;
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'bottom';
-    // 右上角标注
-    ctx.fillText('100%', cx + radius + 4, cy - 2);
-  }
-
-  draw();
-
-  // 响应式
-  function resizeCanvas() {
-    const container = canvas.parentElement;
-    const w = container.offsetWidth;
-    if (w < 520) {
-      canvas.style.width = w + 'px';
-      canvas.style.height = w + 'px';
-    } else {
-      canvas.style.width = '';
-      canvas.style.height = '';
-    }
-  }
-
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-});
-</script>

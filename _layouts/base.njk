@@ -25,7 +25,7 @@
   {% if useAos %}
   <link rel="stylesheet" href="{{ '/assets/css/aos.css' | url }}">
   {% endif %}
-
+  
   {% if page.url == "/" %}
   <style>
     .hero-section {
@@ -42,19 +42,10 @@
       font-size: 3rem;
       font-family: 'Kalam', cursive;
       color: var(--text-primary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 3rem;
       opacity: 0;
       transform: translateY(20px);
       animation: signatureFadeIn 1s ease-out 0.3s forwards;
-    }
-
-    .motto {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateX(-30px);
-      animation: mottoSlideIn 1s ease-out 0.6s forwards;
     }
 
     .hero-cards {
@@ -70,10 +61,6 @@
 
     @keyframes signatureFadeIn {
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes mottoSlideIn {
-      to { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes cardsFadeIn {
@@ -131,25 +118,24 @@
     {% if page.url == "/" %}
     <section class="hero-section" style="padding-top: 20px;">
       <h1 class="signature">{{ site.signature }}</h1>
-      <p class="motto">{{ site.motto }}</p>
-      
+
       <div class="hero-cards">
         <a href="{{ '/blog/' | url }}" class="hero-card">
           <div class="hero-icon">B</div>
           <h3>博客</h3>
-          <p>记录思考与成长的文字</p>
+          <p>随手写点想法、踩过的坑和日常</p>
         </a>
         
         <a href="{{ '/projects/' | url }}" class="hero-card">
           <div class="hero-icon">P</div>
           <h3>项目</h3>
-          <p>创意实现与技术探索</p>
+          <p>自己学着捣鼓的小东西，水平有限</p>
         </a>
         
         <a href="{{ '/gallery/' | url }}" class="hero-card">
           <div class="hero-icon">G</div>
           <h3>相册</h3>
-          <p>生活中的美好瞬间</p>
+          <p>随手拍下的生活片段</p>
         </a>
       </div>
     </section>
@@ -166,6 +152,18 @@
   <script src="{{ '/assets/js/cursor-trail.js' | url }}"></script>
   {% if useAos %}
   <script src="{{ '/assets/js/aos.js' | url }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.AOS) {
+        AOS.init({
+          duration: 700,
+          easing: 'ease-out-cubic',
+          offset: 80,
+          once: false
+        });
+      }
+    });
+  </script>
   {% endif %}
 </body>
 </html>

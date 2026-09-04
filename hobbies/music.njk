@@ -1,25 +1,18 @@
 ---
 layout: base.njk
 title: 音乐与节奏
-description: 旋律是流动的建筑
+description: 耳朵不算讲究，听着舒服就行
 ---
 
 <section class="hobby-detail">
   <div class="section-header">
     <a href="{{ '/hobbies/' | url }}" class="back-link">&larr; 兴趣爱好</a>
-    <div class="hobby-title-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 18V5l10-2v13"/>
-        <circle cx="6.5" cy="18" r="2.5"/>
-        <circle cx="16.5" cy="16" r="2.5"/>
-      </svg>
-    </div>
     <h1 class="handwriting">音乐与节奏</h1>
-    <p class="section-subtitle">旋律是流动的建筑</p>
+    <p class="section-subtitle">耳朵不算讲究，听着舒服就行</p>
   </div>
 
   <div class="hobby-detail-content">
-    <p>音乐是生活中最好的背景板，在音符中寻找情绪的共鸣。</p>
+    <p>走路、写作业、发呆都得有歌，耳机一戴就是自己的世界。最近常听的，记一笔：</p>
 
     <div class="item-list">
       <div class="item-card">
@@ -81,24 +74,6 @@ description: 旋律是流动的建筑
 .back-link:hover {
   color: var(--accent);
 }
-
-.hobby-title-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 0.6rem;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hobby-title-icon svg {
-  width: 26px;
-  height: 26px;
-}
 .hobby-detail-content p {
   font-size: 0.95rem;
   line-height: 1.7;
@@ -118,11 +93,10 @@ description: 旋律是流动的建筑
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 .item-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 .item-placeholder {
   width: 100px;
