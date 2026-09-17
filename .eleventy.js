@@ -20,8 +20,16 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  // 足迹：src/gallery
   eleventyConfig.addCollection("gallery", function(collection) {
     return collection.getFilteredByGlob("src/gallery/*.md").sort(function(a, b) {
+      return b.date - a.date;
+    });
+  });
+
+  // 相册：src/album
+  eleventyConfig.addCollection("album", function(collection) {
+    return collection.getFilteredByGlob("src/album/*.md").sort(function(a, b) {
       return b.date - a.date;
     });
   });
@@ -78,9 +86,10 @@ module.exports = function(eleventyConfig) {
     linkify: true
   };
   const opts = {
-    permalink: true,
-    permalinkClass: "direct-link",
-    permalinkSymbol: "#"
+    permalink: {
+      class: "direct-link",
+      symbol: "#"
+    }
   };
 
   eleventyConfig.setLibrary("md", markdownIt(options).use(markdownItAnchor, opts));

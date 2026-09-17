@@ -22,13 +22,15 @@ layout: base.njk
           </time>
         </div>
         
+        {% if location %}
         <div class="meta-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2"/>
             <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
           </svg>
-          <span>{{ location or '未记录' }}</span>
+          <span>{{ location }}</span>
         </div>
+        {% endif %}
       </div>
       
       <div class="photo-description">
@@ -67,14 +69,14 @@ layout: base.njk
     </div>
     
     <div class="nav-home">
-      <a href="{{ '/gallery/' | url }}" class="nav-link">
+      <a href="{{ backUrl or '/gallery/' | url }}" class="nav-link">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
           <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
           <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
           <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
         </svg>
-        <span>相册首页</span>
+        <span>{{ backLabel or '相册首页' }}</span>
       </a>
     </div>
     

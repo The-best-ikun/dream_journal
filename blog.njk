@@ -12,6 +12,22 @@ keywords: 博客, 文章, 思考, 技术, 生活
   </div>
   
   <div class="blog-filters">
+    <div class="filter-group filter-search">
+      <h3>搜索文章</h3>
+      <div class="search-box">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+          <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="搜索标题、正文或标签..." autocomplete="off">
+        <button type="button" class="search-clear" id="searchClear" style="display: none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <div class="filter-group">
       <h3>心情标签</h3>
       <div class="mood-filters" id="moodFilters">
@@ -47,8 +63,10 @@ keywords: 博客, 文章, 思考, 技术, 生活
   <div class="blog-posts" id="blogPosts">
     {% for post in collections.posts %}
     <article class="blog-post"
-             data-mood="{{ post.data.mood or '思考' }}" 
-             data-tags="{{ post.data.tags | join(',') }}">
+             data-mood="{{ post.data.mood or '思考' }}"
+             data-tags="{{ post.data.tags | join(',') }}"
+             data-title="{{ post.data.title }}"
+             data-search="{{ [post.data.title, post.data.description, (post.data.tags | join(' ')), post.templateContent] | join(' ') | striptags | lower }}">
       <div class="post-header">
         <div class="post-mood">
           <span class="mood-label">{{ post.data.mood or '思考' }}</span>
@@ -146,6 +164,71 @@ keywords: 博客, 文章, 思考, 技术, 生活
   color: var(--text-muted);
   letter-spacing: 0.05em;
   margin-bottom: 0.6rem;
+}
+
+.filter-search {
+  margin-bottom: 1.2rem;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.search-box:focus-within .search-icon {
+  color: var(--accent);
+}
+
+#searchInput {
+  width: 100%;
+  padding: 0.6rem 2.5rem 0.6rem 2.3rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+#searchInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 74, 144, 226), 0.15);
+}
+
+.search-clear {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.search-clear:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
 }
 
 .mood-filters,
@@ -353,48 +436,70 @@ keywords: 博客, 文章, 思考, 技术, 生活
 </style>
 
 <script>
-// 博客过滤器功能
 document.addEventListener('DOMContentLoaded', function() {
   const moodButtons = document.querySelectorAll('#moodFilters .filter-btn');
   const tagButtons = document.querySelectorAll('#tagFilters .filter-btn');
   const blogPosts = document.querySelectorAll('.blog-post');
   const noResults = document.getElementById('noResults');
+  const searchInput = document.getElementById('searchInput');
+  const searchClear = document.getElementById('searchClear');
   
   let currentMood = 'all';
   let currentTag = 'all';
+  let currentKeyword = '';
+
+  function applyFilter(buttons, activeBtn, key) {
+    buttons.forEach(btn => btn.classList.remove('active'));
+    activeBtn.classList.add('active');
+    if (key === 'mood') currentMood = activeBtn.dataset.mood;
+    if (key === 'tag') currentTag = activeBtn.dataset.tag;
+    filterPosts();
+  }
   
-  // 心情过滤
   moodButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      moodButtons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-      currentMood = this.dataset.mood;
-      filterPosts();
-    });
+    button.addEventListener('click', () => applyFilter(moodButtons, button, 'mood'));
   });
   
-  // 标签过滤
   tagButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      tagButtons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-      currentTag = this.dataset.tag;
+    button.addEventListener('click', () => applyFilter(tagButtons, button, 'tag'));
+  });
+
+  searchInput.addEventListener('input', function() {
+    currentKeyword = this.value.trim().toLowerCase();
+    searchClear.style.display = currentKeyword ? 'flex' : 'none';
+    filterPosts();
+  });
+
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      this.value = '';
+      currentKeyword = '';
+      searchClear.style.display = 'none';
       filterPosts();
-    });
+    }
+  });
+
+  searchClear.addEventListener('click', function() {
+    searchInput.value = '';
+    currentKeyword = '';
+    this.style.display = 'none';
+    searchInput.focus();
+    filterPosts();
   });
   
-  // 过滤文章
   function filterPosts() {
     let visibleCount = 0;
     
     blogPosts.forEach(post => {
       const postMood = post.dataset.mood;
       const postTags = post.dataset.tags || '';
-      
+      const postSearch = (post.dataset.search || '').toLowerCase();
+
       const moodMatch = currentMood === 'all' || postMood === currentMood;
       const tagMatch = currentTag === 'all' || postTags.includes(currentTag);
+      const keywordMatch = !currentKeyword || postSearch.includes(currentKeyword);
       
-      if (moodMatch && tagMatch) {
+      if (moodMatch && tagMatch && keywordMatch) {
         post.classList.remove('hidden');
         post.style.display = 'block';
         visibleCount++;
@@ -404,24 +509,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // 显示或隐藏"无结果"提示
-    if (visibleCount === 0) {
-      noResults.style.display = 'block';
-    } else {
-      noResults.style.display = 'none';
-    }
-    
-    // 重新添加动画效果
+    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     reanimateVisiblePosts();
   }
   
-  // 重新动画显示的文章
   function reanimateVisiblePosts() {
     let delay = 0.1;
     blogPosts.forEach(post => {
       if (!post.classList.contains('hidden')) {
         post.style.animation = 'none';
-        post.offsetHeight; // 触发重排
+        post.offsetHeight;
         post.style.animation = `postFadeIn 0.6s ease-out ${delay}s forwards`;
         delay += 0.1;
       }
